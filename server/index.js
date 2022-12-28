@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv =  require('dotenv').config();
 const app = express()
+const userRoute = require("./route/userRoute")
+const errorHandler = require("./middleWare/errorMiddleware")
 
 const PORT = process.env.PORT || 5000;
 
@@ -12,11 +14,16 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+//Route Middleware
+app.use("/api/users", userRoute)
+
 //Routing
 
 app.get("/", (req,res) => {
     res.send("Home Page");
 });
+// Error Middleware
+app.use(errorHandler);
 
 //Connect to DB and Start Server
 mongoose
