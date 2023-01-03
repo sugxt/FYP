@@ -23,11 +23,13 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new Error("The email is already in use")
     }
 
+
+
     // Create new user
     const user = await User.create({
         name,
         email,
-        password
+        password,
     })
 
     if (user) {

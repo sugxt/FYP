@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require("bcryptjs")
 
 const userSchema = mongoose.Schema({
     name: {
@@ -20,7 +21,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, "Please Add a Password"],
         minLength: [6, "Password must be up to 6 characters"],
-        maxLength: [30, "Password must be less than 30 words"],
+        //maxLength: [30, "Password must be less than 30 words"],
 
     },
     photo: {
@@ -34,6 +35,17 @@ const userSchema = mongoose.Schema({
     }
 }, {
     timestamps: true
+})
+// Encrypt password before passing to DB
+userSchema.pre("save", async function(){
+    if(!this.isModified("password")){
+        return next()
+    }
+
+    //Hash Password
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(this.password,salt)
+    this.password = hashedPassword
 })
 
 const User = mongoose.model("User", userSchema)
