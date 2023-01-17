@@ -16,8 +16,8 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new Error("Please fill all the required fields")
 
     }
-    if (password.length < 6){
-        throw new Error("Password must be up to 6 characters")
+    if (password.length < 8){
+        throw new Error("Password must be up to 8 characters")
 
     }
 
