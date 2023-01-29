@@ -35,6 +35,11 @@ const userSchema = mongoose.Schema({
     phone: {
         type: String,
         default: "+977"
+    },
+    role: {
+        type: String,
+        required:[true,"Please specify user"],
+        default:"user"
     }
 }, {
     timestamps: true

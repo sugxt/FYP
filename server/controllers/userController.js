@@ -1,12 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const generateToken = (id) => {
     return jwt.sign({id},process.env.JWT_SECRET, {expiresIn: "1d"})
 };
 
-
+// Register User
 const registerUser = asyncHandler( async (req,res) => {
     const {name,email,password} = req.body
 
@@ -37,10 +38,20 @@ const registerUser = asyncHandler( async (req,res) => {
 
     const token = generateToken(user._id)
 
+    // Send HTTP-only cookie
+    res.cookie("token",token, {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 86400), // One Day
+        sameSite:"none",
+        secure: true
+    });
+
+
     if (user) {
-        const {_id, name, email,photo,phone} = user
+        const {_id, name, email,photo,phone,role} = user
         res.status(201).json({
-            _id, name, email, photo, phone,token
+            _id, name, email, photo, phone,token,role
         })
     } else{
         res.status(400)
@@ -48,6 +59,57 @@ const registerUser = asyncHandler( async (req,res) => {
     }
 });
 
+// Login User
+const loginUser = asyncHandler( async (req,res) => {
+    const {email, password} =  req.body
+
+    // Validates the Login Request
+    if (!email || !password) {
+        res.status(400)
+    throw new Error("Please add an email and password")
+    }
+    // Check if user exists
+    const user = await User.findOne({email})
+    if (!user) {
+        res.status(400)
+    throw new Error("User not found");
+
+    }
+    // After user confirmation, checking if password is correct
+    const passCorrect = await bcrypt.compare(password, user.password)
+
+    const token = generateToken(user._id)
+
+    // Send HTTP-only cookie
+    res.cookie("token",token, {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 86400), // One Day
+        sameSite:"none",
+        secure: true
+    });
+
+
+
+    if (user && passCorrect) {
+        const {_id, name, email,photo,phone,role} = user
+        res.status(200).json({
+            _id,
+            name,
+            email,
+            photo,
+            phone,
+            role,
+            token
+        });
+    } else {
+        res.status(400);
+        throw new Error("Your email or password is invalid");
+    }
+
+});
+
 module.exports = {
-    registerUser
+    registerUser,
+    loginUser,
 };
