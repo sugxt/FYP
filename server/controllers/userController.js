@@ -100,7 +100,8 @@ const loginUser = asyncHandler( async (req,res) => {
             photo,
             phone,
             role,
-            token
+            token,
+            message:"Successfully Logged In"
         });
     } else {
         res.status(400);
@@ -138,9 +139,15 @@ const getUser = asyncHandler (async (req,res) => {
     }
 });
 
+// Get Login Status
+const loginStatus = asyncHandler (async(req,res) => {
+    res.send("Login Status")
+});
+
 module.exports = {
     registerUser,
     loginUser,
     logout,
     getUser,
+    loginStatus,
 };
