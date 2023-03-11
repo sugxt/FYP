@@ -34,6 +34,6 @@ app.get('/signUp',(req,res) =>{
 });
 
 
-app.listen(PORT, () =>{
+app.listen(5000, () =>{
     console.log(`server is running on port 3000`)
 })
