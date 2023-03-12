@@ -43,7 +43,7 @@ const Signup = () => {
         window.alert("Registration Successful");
         console.log("Successfull Registration");
 
-        //history("/login");
+        history("/login");
       }
       
   }
