@@ -1,4 +1,5 @@
 import React, {useState}from 'react'
+import "../App.css"
 import {NavLink, useNavigate} from "react-router-dom";
 
 const Signup = () => {

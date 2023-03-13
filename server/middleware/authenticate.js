@@ -19,8 +19,8 @@ const authenticate = async (req,res,next) => {
 
         next() //Calling next to move on from the middleware
     } catch (error) {
-        res.status(401).send("Unauthorized Request")
-        console.log(error);
+        res.status(401).send("Unauthorized Request");
+        //console.log(error);
     }
 }
 

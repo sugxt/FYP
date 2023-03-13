@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const authenticate =  require("../middleware/authenticate")
+const cookieParser = require('cookie-parser')
+
+router.use(cookieParser())
 
 require('../db/conn');
 const User = require('../model/userSchema')
@@ -116,7 +119,7 @@ router.post('/signin', async (req,res) =>{
 // Middle Ware
 
 router.get('/about',authenticate,(req,res) =>{
-    res.send(`Hello about world`);
+    res.send(req.rootUser);
 });
 
 
