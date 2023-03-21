@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required:[true,"Please specify user"],
-        default:"user"
+        default:"Freelancer"
     },
     cpassword: {
         type: String,

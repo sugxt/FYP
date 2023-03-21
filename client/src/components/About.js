@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import "./css/about.css"
 const About = () => {
 
   const history = useNavigate();
@@ -39,7 +40,26 @@ const About = () => {
 
   return (
     <>
-    <section> </section>
+    <section className='main-about'>
+      <body>
+        <div className="about-card">
+          <div className="imagpx"><img src={user.photo}height={150} width={150} alt="User"/></div>
+          <div className="content">
+            <div className="details">
+              <h2>{user.name}<br/><span>{user.role}</span></h2>
+              <div className="data">
+                <h3>Email<br/><span>{user.email}</span></h3>
+                <h3>Phone<br/><span>{user.phone}</span></h3>
+              </div>
+              <div className="actionBtn">
+                <button>View Packages</button>
+                <button>Home</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </section>
     </>
   )
 }

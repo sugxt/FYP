@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import "../App.css"
-import { NavLink, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
+import Logo from '../images/eKalah.png'
 
 const Login = () => {
 
@@ -56,7 +57,8 @@ const Login = () => {
       <div className="Auth-form-container">
       <form className="Auth-form" method='POST'>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h2 className='Auth-form-image'> <img src = {Logo}/> </h2>
+          <h4 className="Auth-form-title">Sign In</h4>
           <div className="form-group mt-3">
             <label>Email Address</label>
             <input
@@ -81,13 +83,12 @@ const Login = () => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary" value = 'login' onClick={PostData}>
+            <button type="submit" className="btn" value = 'login' onClick={PostData}>
               Submit
             </button>
           </div>
-          <p className="forgot-password text-right mt-2">
-           <a href="/">Forgot password?</a>
-          </p>
+          <p className="forgot-password text-right mt-2"></p>
+           <a className="fpassword" href="/">Forgot password?</a>
         </div>
       </form>
     </div>

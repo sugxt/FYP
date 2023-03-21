@@ -6,8 +6,8 @@ import eKalah from "../images/eKalah.png"
 const Navbar = () => {
   return (
     <>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <NavLink className="navbar-brand" to="/"><img src={eKalah} alt="Logo" width={100} height={60} /></NavLink>
+    <nav className="navbar navbar-expand-lg fixed-top rounded-bottom navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">
+  <NavLink className="navbar-brand" to="/"><img src={eKalah} alt="Logo" width={95} height={50} /></NavLink>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink className="nav-link" to="/about">About</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to="/contact">Contact</NavLink>
+        <NavLink className="nav-link" to="/contact">Status</NavLink>
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to="/login">Login</NavLink>

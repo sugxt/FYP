@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .login-main {
+  padding-top: 56px;
   font-family: Montserrat;
-  background-color: gainsboro;
+  background-image: linear-gradient(to bottom, rgb(175,225,175), rgb(197, 255, 197));
 }
 
 .Login {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 .Auth-form-container {
   display: flex;
-  justify-content: center;
+  justify-content:space-evenly;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -21,8 +22,8 @@
   width: 420px;
   box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
   padding-top: 30px;
-  padding-bottom: 20px;
-  border-radius: 8px;
+  padding-bottom: 30px;
+  border-radius: 30px;
   background-color: white;
 }
 
@@ -32,11 +33,13 @@
 }
 
 .Auth-form-title {
+  font-family: Montserrat;
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
   color: rgb(34, 34, 34);
   font-weight: 800;
+
 }
 
 label {
@@ -45,5 +48,17 @@ label {
   color: rgb(34, 34, 34);
 }
 .btn{
-  color: beige;
+  color: rgb(255, 255, 255);
+  background-color: rgb(175, 225, 175);
+}
+.nav-link {
+  font-family: Montserrat;
+  font-size: 18;
+}
+.fpassword{
+  color: rgb(175, 225, 175);
+}
+
+.main-about{
+  padding-top: 56px;
 }

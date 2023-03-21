@@ -122,5 +122,9 @@ router.get('/about',authenticate,(req,res) =>{
     res.send(req.rootUser);
 });
 
+router.get('/getdata', authenticate, (req,res)=>{
+    res.send(req.rootUser);
+});
+
 
 module.exports = router;

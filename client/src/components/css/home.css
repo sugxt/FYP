@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+.main{
+    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+}
+.main h1{
+    color: #fff;
+}
+.main p{
+    color: #fff;
+}
