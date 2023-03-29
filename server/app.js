@@ -21,7 +21,7 @@ app.get('/',(req,res) =>{
 //     res.send(`Hello about world`);
 // });
 
-app.get('/contact',(req,res) =>{
+app.get('/status',(req,res) =>{
     res.send(`Hello contact world`);
 });
 

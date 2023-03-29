@@ -41,7 +41,7 @@ const About = () => {
   return (
     <>
     <section className='main-about'>
-      <body>
+      <body className='about-body'>
         <div className="about-card">
           <div className="imagpx"><img src={user.photo}height={150} width={150} alt="User"/></div>
           <div className="content">

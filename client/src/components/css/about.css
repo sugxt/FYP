@@ -5,7 +5,7 @@
     box-sizing: border-box;
     font-family: Montserrat;
 }
-body{
+.about-body{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,4 +104,110 @@ body{
     font-weight: 500;
     background: rgb(175, 225, 175);
     color: #fff;
+}
+
+.home-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+}
+
+/* FOR STATUS PAGE */
+
+.status-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+    font-family: Montserrat;
+}
+
+.status-container {
+    position: relative;
+    padding: 30px 30px;
+    width: 950px;
+    height: 500pxpx;
+    background: rgb(255, 255, 255);
+    border-radius: 25px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0,0.15);
+    
+}
+.status-container h1 {
+    margin-bottom: 10px;
+}
+.status-contact {
+    display: flex;
+}
+.status-contact-left{
+    flex-basis: 60%;
+    padding: 40px 40px;
+    border-radius: 20px;
+    background: #f5f5f5;
+}
+.status-contact-right{
+    flex-basis: 40%;
+    padding: 40px;
+    background: rgb(170, 224, 170);
+    border-radius: 20px;
+}
+.status-contact-right h3{
+    color: #fff;
+}
+.status-contact-left h3{
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.status-body h1 {
+    margin-bottom: 10px;
+}
+.status-container p {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #555;
+}
+.status-input-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.status-input-row .input-group{
+    flex-basis: 45%
+}
+.status-input {
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    padding-bottom: 5px ;
+    background: #f5f5f5;
+}
+.status-texta{
+    width: 100%;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+.status-label{
+    margin-bottom: 10px;
+    display: block;
+    color: #555;
+}
+.status-button{
+    width: 100px;
+    background: rgb(175, 225, 175);
+    color: #fff;
+    border: none;
+    outline: none;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 20px;
+
+}
+.input-group label{
+    color: #555;
 }
