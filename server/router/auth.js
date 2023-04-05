@@ -126,5 +126,28 @@ router.get('/getdata', authenticate, (req,res)=>{
     res.send(req.rootUser);
 });
 
+// Status Page
+
+router.post('/status', authenticate, async (req,res) => {
+    try {
+        const {name,email,message} = req.body;
+        
+        if(!name || !email || !message){
+            console.log("Error in Status Form")
+            return res.json({error:"Please Fill the Form"})
+        }
+
+        const userStatus = await User.findOne({_id:req.rootUserID})
+
+        if (userStatus){
+            const userMessage = await userStatus.addMessage(name,email,message)
+            await userStatus.save();
+            res.status(201).json({message:"Done"})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 module.exports = router;

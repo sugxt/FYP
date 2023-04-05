@@ -8,6 +8,7 @@ import Status from "./components/Status";
 import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Packages from "./components/Packages";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
     <Route path="/status" element={<Status />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
+    <Route path ="/packages" elements={<Packages/>}/>
     </Routes>
     </>
   )

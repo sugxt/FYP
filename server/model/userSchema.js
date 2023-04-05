@@ -40,6 +40,27 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:[true, "Please Confirm Your Entered Password"]
     },
+    date: {
+        type: Date,
+        default: Date.now,
+
+    },
+    messages:[
+        {
+            name:{
+                type: String,
+                required: true,
+            },
+            email:{
+                type: String,
+                required: true,
+            },
+            message:{
+                type: String,
+                required: true
+            }
+        }
+    ],
     tokens: [
         {
             token: {
@@ -71,6 +92,18 @@ userSchema.methods.generateAuthToken = async function() {
         return token;
     } catch (error) {
         console.log(error);
+    }
+}
+
+// Store the sent Messages
+
+userSchema.methods.addMessage = async function(name, email, message){
+    try {
+        this.messages = this.messages.concat({name,email,message});
+        await this.save();
+        return this.messages;
+    } catch (error) {
+        console.log(error)
     }
 }
 

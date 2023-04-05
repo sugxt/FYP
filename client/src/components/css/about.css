@@ -117,6 +117,7 @@
 /* FOR STATUS PAGE */
 
 .status-body{
+    padding-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;

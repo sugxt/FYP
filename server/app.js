@@ -21,9 +21,9 @@ app.get('/',(req,res) =>{
 //     res.send(`Hello about world`);
 // });
 
-app.get('/status',(req,res) =>{
-    res.send(`Hello contact world`);
-});
+//  app.get('/status',(req,res) =>{
+//      res.send(`Hello contact world`);
+//  });
 
 app.get('/signIn',(req,res) =>{
     res.send(`Sign In`);
@@ -32,7 +32,9 @@ app.get('/signIn',(req,res) =>{
 app.get('/signUp',(req,res) =>{
     res.send(`Sign Up`);
 });
-
+app.get('/packages',(req,res) => {
+    res.send("Hello Packages")
+})
 
 app.listen(5000, () =>{
     console.log(`server is running on port 3000`)
