@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useReducer } from 'react'
 //import "./App.css"
 import Navbar from "./components/Navbar";
 import {Routes} from "react-router-dom";
@@ -9,21 +9,38 @@ import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Packages from "./components/Packages";
+import Logout from './components/Logout';
+import { initialState, reducer } from './reducer/useReducer';
 
-const App = () => {
+const UserContext = createContext();
+
+
+const Routing = () =>{
   return (
-    <>
-    <Navbar fixed="top"/>
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<About />} />
     <Route path="/status" element={<Status />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
-    <Route path ="/packages" elements={<Packages/>}/>
+    <Route path ="/packages" element={<Packages/>}/>
+    <Route path ="/logout" element={<Logout/>}/>
     </Routes>
-    </>
   )
 }
 
+const App = () => {
+  // Context API
+  const [state,dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <>
+    <UserContext.Provider value={{state,dispatch}}>
+    <Navbar fixed="top"/>
+    <Routing/>
+    </UserContext.Provider>
+    </>
+  )
+}
+export {UserContext}
 export default App

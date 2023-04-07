@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import "../App.css"
 import {useNavigate } from 'react-router-dom';
 import Logo from '../images/eKalah.png'
+import { UserContext } from '../App';
 
 const Login = () => {
+
+  const {state, dispatch} = useContext(UserContext);
 
   const history = useNavigate();
   const [user, setUser] = useState({
@@ -41,6 +44,7 @@ const Login = () => {
         window.alert("Invalid Login");
         console.log("Invalid Login");
       } else {
+        dispatch({type:'USER',payload:true})
         window.alert("Login Successful");
         console.log("Successfull Login");
         history('/')
