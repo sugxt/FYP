@@ -212,3 +212,8 @@
 .input-group label{
     color: #555;
 }
+
+ /* Packages */
+.package-head{
+    padding-top: 100px;
+}

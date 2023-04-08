@@ -11,6 +11,7 @@ const Navbar = () => {
       if (state) {
         return(
           <>
+          
                 <li className="nav-item active">
                   <NavLink className="nav-link" to="/">Home</NavLink>
                 </li>
@@ -33,6 +34,12 @@ const Navbar = () => {
           <>
             <li className="nav-item active">
               <NavLink className="nav-link" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item">
+                  <NavLink className="nav-link" to="/about">About</NavLink>
+            </li>
+            <li className="nav-item">
+                  <NavLink className="nav-link" to="/status">Status</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">Login</NavLink>

@@ -9,7 +9,7 @@ router.use(cookieParser())
 
 require('../db/conn');
 const User = require('../model/userSchema')
-
+const Package = require("../model/packageSchema")
 router.get('/',(req,res) =>{
     res.send(`Hello world from the server router.js`);
 });
@@ -155,5 +155,26 @@ router.get('/logout',(req,res) =>{
     res.status(200).send('User Logged Out');
 });
 
+// Add and Get Info about Packages
+router.post('/packages',async (req,res) => {
+    try {
+        const {package_name, user_name, user_email,image_url,description} = req.body;
+    
+        if(!package_name || !user_name || !user_email || !image_url || !description) {
+            return res.status(422).json({error: "Please enter all the required fields"})
+    
+        }
+                const package = new Package({package_name, user_name,user_email,image_url,description});    
+                await package.save();
+                res.status(201).json({message:"Package Successfully Added"});
+    } catch (error) {
+        console.log(error)
+     }
+
+    });
+router.get('/getpackages', authenticate, async (req,res)=>{
+        const packages = await Package.find({});
+        res.status(200).json({ packages });
+    });
 
 module.exports = router;

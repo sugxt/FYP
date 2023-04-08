@@ -52,7 +52,9 @@ const About = () => {
                 <h3>Phone<br/><span>{user.phone}</span></h3>
               </div>
               <div className="actionBtn">
+                <a href='/packages'>
                 <button>View Packages</button>
+                </a>
                 <button>Home</button>
               </div>
             </div>
@@ -63,5 +65,6 @@ const About = () => {
     </>
   )
 }
+
 
 export default About

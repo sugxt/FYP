@@ -8,7 +8,8 @@ import Status from "./components/Status";
 import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Packages from "./components/Packages";
+import Packages from "./components/Packages/Packages"
+import GetPackages from './components/Packages/GetPackages';
 import Logout from './components/Logout';
 import { initialState, reducer } from './reducer/useReducer';
 
@@ -24,6 +25,7 @@ const Routing = () =>{
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
     <Route path ="/packages" element={<Packages/>}/>
+    <Route path ="/getpackages" element={<GetPackages/>}/>
     <Route path ="/logout" element={<Logout/>}/>
     </Routes>
   )
