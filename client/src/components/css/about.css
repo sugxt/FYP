@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+    background: white;
 }
 .about-card {
     position: relative;
@@ -111,18 +111,18 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+    background: white
 }
 
 /* FOR STATUS PAGE */
 
 .status-body{
-    padding-top: 100px;
+    padding-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg,rgb(175,225,175),rgb(197, 255, 197));
+    background: white;
     font-family: Montserrat;
 }
 
@@ -214,6 +214,14 @@
 }
 
  /* Packages */
-.package-head{
+ .body-package{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: white;
+    
+}
+
+.packages-cards{
     padding-top: 100px;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import "./css/about.css"
 const About = () => {
 
@@ -52,9 +52,9 @@ const About = () => {
                 <h3>Phone<br/><span>{user.phone}</span></h3>
               </div>
               <div className="actionBtn">
-                <a href='/packages'>
+                  <NavLink to='/getpackages'>
                 <button>View Packages</button>
-                </a>
+                </NavLink>
                 <button>Home</button>
               </div>
             </div>

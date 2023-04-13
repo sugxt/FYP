@@ -106,7 +106,7 @@ router.post('/signin', async (req,res) =>{
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
             });
-            res.json({message: "User Sign in Successful"})
+            res.json({message: "User Sign in Successful",token})
         }
         } else {
             res.status(400).json({message: "Invalid Credentials"});
@@ -156,15 +156,15 @@ router.get('/logout',(req,res) =>{
 });
 
 // Add and Get Info about Packages
-router.post('/packages',async (req,res) => {
+router.post('/packages', authenticate, async (req,res) => {
     try {
-        const {package_name, user_name, user_email,image_url,description} = req.body;
+        const {package_name, user_name, user_email,image_url,description, price} = req.body;
     
-        if(!package_name || !user_name || !user_email || !image_url || !description) {
+        if(!package_name || !user_name || !user_email || !image_url || !description || !price) {
             return res.status(422).json({error: "Please enter all the required fields"})
     
         }
-                const package = new Package({package_name, user_name,user_email,image_url,description});    
+                const package = new Package({package_name, user_name,user_email,image_url,description,price});    
                 await package.save();
                 res.status(201).json({message:"Package Successfully Added"});
     } catch (error) {
@@ -172,7 +172,7 @@ router.post('/packages',async (req,res) => {
      }
 
     });
-router.get('/getpackages', authenticate, async (req,res)=>{
+router.get('/getpackages', async (req,res)=>{
         const packages = await Package.find({});
         res.status(200).json({ packages });
     });

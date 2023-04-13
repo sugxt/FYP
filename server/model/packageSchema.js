@@ -19,6 +19,10 @@ const packageSchema = new mongoose.Schema({
     image_url: {
         type: String,
         required: true,
+    },
+    price: {
+        type: String,
+        required: true,
     }
 },{
     timestamps: true

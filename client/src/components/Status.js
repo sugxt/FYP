@@ -17,8 +17,8 @@ const Status = () => {
       });
 
       const data = await res.json();
-      console.log(data);
       setUserData({...userData,name:data.name, email:data.email, message:data.message});
+      console.log(userData);
 
       if (!res.status === 200){
         throw new Error(res.error);
@@ -63,6 +63,7 @@ const statusForm = async (e) =>{
   } else {
     alert("Message Sent")
     setUserData({...userData, message:""})
+    console.log(userData)
   }
 
 }

@@ -47,6 +47,7 @@ const Login = () => {
         dispatch({type:'USER',payload:true})
         window.alert("Login Successful");
         console.log("Successfull Login");
+        localStorage.setItem("token",data.token)
         history('/')
 
         //history("/login");
