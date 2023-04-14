@@ -1,16 +1,14 @@
-import React, {useState, useContext} from 'react'
+import React, { useState } from 'react'
 import "../App.css"
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import Logo from '../images/eKalah.png'
-import { UserContext } from '../App';
 
 const Login = () => {
 
-  const {state, dispatch} = useContext(UserContext);
-
   const history = useNavigate();
   const [user, setUser] = useState({
-      email: "", password: ""
+    email: "", password: ""
   });
 
   let name, value;
@@ -19,46 +17,78 @@ const Login = () => {
     name = e.target.name
     value = e.target.value
 
-    setUser({...user, [name]:value});
+    setUser({ ...user, [name]: value });
   }
 
   const PostData = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const {email,password} = user;
+    const { email, password } = user;
 
-      const res = await fetch("/signin",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+    const res = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
 
-        body: JSON.stringify({
-          email, password
-        })
-      });
+      body: JSON.stringify({
+        email, password
+      })
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (res.status === 400 || !data) {
-        window.alert("Invalid Login");
-        console.log("Invalid Login");
-      } else {
-        dispatch({type:'USER',payload:true})
-        window.alert("Login Successful");
-        console.log("Successfull Login");
-        localStorage.setItem("token",data.token)
-        history('/')
+    if (res.status === 400 || !data) {
+      window.alert("Invalid Login");
+      console.log("Invalid Login");
+    } else {
+      window.alert("Login Successful");
+      console.log("Successfull Login");
+      localStorage.setItem("token", data.token)
+      history('/')
 
-        //history("/login");
-      }
-      
+      //history("/login");
+    }
+
   }
 
 
   return (
     <>
-      <section className='login-main'>
+      <body className="home-body">
+
+        <form className="home-form-signin" method='POST'>
+          <img className="mb-4" src={Logo} alt="" />
+          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+          <label for="inputEmail" className="sr-only">Email address</label>
+          <input
+            className="form-control mt-1"
+            value={user.email}
+            name="email"
+            type="text"
+            onChange={handleInputs}
+            placeholder="Enter email"
+            autoComplete='off'
+          />
+          <label for="inputPassword" className="sr-only">Password</label>
+          <input
+              type="password"
+              className="form-control mt-1"
+              value = {user.password}
+              onChange={handleInputs}
+              placeholder="Enter password"
+              name = "password"
+            />
+          <div className="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me" /> Remember me
+            </label>
+          </div>
+          <button className="btn btn-primary btn-block" type="submit" value='login' onClick={PostData}>Sign in</button>
+          <p className="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+        </form>
+      </body>
+      {/* <section className='login-main'>
       <div className="Auth-form-container">
       <form className="Auth-form" method='POST'>
         <div className="Auth-form-content">
@@ -97,7 +127,7 @@ const Login = () => {
         </div>
       </form>
     </div>
-      </section>
+      </section> */}
     </>
   )
 }

@@ -11,40 +11,25 @@ import Packages from "./components/Packages/Packages"
 import Product from "./components/Packages/IndividualPackage"
 import GetPackages from './components/Packages/GetPackages';
 import Logout from './components/Logout';
-import { initialState, reducer } from './reducer/useReducer';
-
-const UserContext = createContext();
 
 
-const Routing = () => {
+const App = () => {
   return (
-    <Routes>
+    <>
+      <Navbar />
+      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/status" element={<Status />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/packages" element={<Packages />} />
+      <Route path="/packages/add" element={<Packages />} />
       <Route path="/packages/:id" element={<Product />} />
-      <Route path="/getpackages" element={<GetPackages />} />
+      <Route path="/packages" element={<GetPackages />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/logout" element={<Logout />} />
     </Routes>
-  )
-}
-
-const App = () => {
-  // Context API
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <>
-      <UserContext.Provider value={{ state, dispatch }}>
-        <Navbar/>
-        <Routing />
-      </UserContext.Provider>
     </>
   )
 }
-export { UserContext }
 export default App

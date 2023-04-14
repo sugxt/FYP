@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../App';
 
 const Logout = () => {
     // Promises
-    const {state, dispatch} = useContext(UserContext)
     const history = useNavigate()
     useEffect(() => {
         fetch('/logout',{
@@ -16,7 +14,6 @@ const Logout = () => {
             credentials:'include'
     
           }).then((res) => {
-            dispatch({type:"USER", payload:false})
             history('/login',{replace: true})
             if (!res.status === 200) {
                 const error = new Error(res.error)

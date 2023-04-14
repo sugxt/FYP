@@ -20,7 +20,7 @@ const Navbar = () => {
                   <NavLink className="nav-link" to="/status">Status</NavLink>
                 </li>
                 <li className="nav-item">
-                   <NavLink className="nav-link" to="/getpackages">Packages</NavLink>
+                   <NavLink className="nav-link" to="/packages/add">Packages</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/logout">Logout</NavLink>
