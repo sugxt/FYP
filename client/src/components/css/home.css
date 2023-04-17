@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
-.home-body {
+.login-home-body {
+    height: 100%;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -9,7 +10,6 @@
     background-color: #f5f5f5;
     min-height: 100vh;
   }
-  
   .home-form-signin {
     width: 100%;
     max-width: 330px;
@@ -39,3 +39,12 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+.bg-teal{
+  background-color: #7B9E7F;
+}
+.text-teal{
+  color: #7B9E7F;
+}
+.border-teal{
+  border-color: #7B9E7F;
+}

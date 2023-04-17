@@ -6,6 +6,7 @@ import axios from 'axios'
 const GetPackages = () => {
   const history = useNavigate();
   const [products, setProducts] = useState("");
+  const [user, setUser] =  useState("");
 
   const callPackages = async () => {
 
@@ -15,26 +16,36 @@ const GetPackages = () => {
       setProducts(data);
     } catch (error) {
       console.log(error)
-      history("/login")
+      history("/")
+    }
+  }
+  const getUser = async () => {
+    try {
+      const userData = await axios.get('/getdata');
+      setUser(userData.data.name)
+    } catch (error) {
+      console.log(error)
     }
   }
 
   useEffect(() => {
     callPackages()
+    getUser()
   }, [])
   return (
     <body>
 
       <main role="main">
 
-        <section className="jumbotron text-center">
+        <section className="jumbotron text-center bg-teal text-white">
           <div className="container">
-            <h1>Packages</h1>
-            <p className="lead text-muted">This is the marketplace for all the amazing packages you can find.</p>
+            <h1 className='font-weight-bold'>Welcome {user}</h1>
+            <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
             <p>
-              <a href="#" className="btn btn-primary my-2">Main call to action</a>
-              <a href="#" className="btn btn-secondary my-2">Secondary action</a>
-            </p>
+            <NavLink to="/packages/add">
+              <a  className="btn bg-white font-weight-bold text-teal">Create a Package</a>
+              </NavLink>
+          </p>
           </div>
         </section>
 
@@ -49,14 +60,13 @@ const GetPackages = () => {
                       <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                          dy=".3em">{product.package_name}</text>
+                        <rect width="100%" height="100%" fill="#7B9E7F" />
                       </svg>
 
                       <div className="card-body">
                         <h5 className="card-title">{product.package_name}</h5>
                         <p className="card-text">{product.description}.</p>
-                        <p className="card-text"><small className="text-muted">Price: {product.price}$</small></p>
+                        <p className="card-text"><small className="font-weight-bold">Price: {product.price}$</small></p>
                         <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
                         <div className="d-flex justify-content-between align-items-center">
                           <div className="btn-group">

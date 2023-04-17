@@ -10,8 +10,9 @@ import Signup from "./components/Signup";
 import Packages from "./components/Packages/Packages"
 import Product from "./components/Packages/IndividualPackage"
 import GetPackages from './components/Packages/GetPackages';
+import UpdateUser from './components/UpdateUser';
 import Logout from './components/Logout';
-
+import UpdatePackage from './components/Packages/UpdatePackage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Navbar />
       <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/home" element={<GetPackages />} />
       <Route path="/about" element={<About />} />
       <Route path="/status" element={<Status />} />
       <Route path="/login" element={<Login />} />
@@ -26,7 +28,8 @@ const App = () => {
       <Route path="/packages/add" element={<Packages />} />
       <Route path="/packages/:id" element={<Product />} />
       <Route path="/packages" element={<GetPackages />} />
-      <Route path="/logout" element={<Logout />} />
+      <Route path="/about/update" element={<UpdateUser />} />
+      <Route path="/packages/update/:id" element={<UpdatePackage />} />
       <Route path="/logout" element={<Logout />} />
     </Routes>
     </>

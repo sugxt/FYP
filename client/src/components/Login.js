@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../App.css"
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,6 +10,13 @@ const Login = () => {
   const [user, setUser] = useState({
     email: "", password: ""
   });
+
+  const checkLogin = () => {
+    const token = localStorage.getItem("token")
+    if (token){
+      history("/home")
+    }
+  }
 
   let name, value;
   const handleInputs = (e) => {
@@ -51,11 +58,14 @@ const Login = () => {
     }
 
   }
+  useEffect(() => {
+    checkLogin()
+  }, [])
 
 
   return (
     <>
-      <body className="home-body">
+      <body className="login-home-body">
 
         <form className="home-form-signin" method='POST'>
           <img className="mb-4" src={Logo} alt="" />

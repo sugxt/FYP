@@ -52,7 +52,7 @@ const About = () => {
                 <h3>Phone<br/><span>{user.phone}</span></h3>
               </div>
               <div className="actionBtn">
-                  <NavLink to='/packages/add'>
+                  <NavLink to='/packages'>
                 <button>View Packages</button>
                 </NavLink>
                 <button>Home</button>

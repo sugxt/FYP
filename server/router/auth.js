@@ -172,9 +172,26 @@ router.post('/packages', authenticate, async (req,res) => {
      }
 
     });
-router.get('/getpackages', async (req,res)=>{
+router.get('/getpackages',authenticate, async (req,res)=>{
         const packages = await Package.find({});
         res.status(200).json({ packages });
     });
 
+// Update Routes and Controllers
+
+router.patch('/updateuser', authenticate, async (req,res) => {
+    try {
+        const id = req.rootUser._id;
+        const {name, email, phone} = req.body;
+        const isMatch = await User.findOne({email:email});
+        if (isMatch){
+            return res.status(200).json({error: "Invalid Credintials"})
+        }
+        const update = await User.findByIdAndUpdate({_id: id}, req.body, {new:true});
+        res.status(200).json({message:'User Updated'})
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 module.exports = router;

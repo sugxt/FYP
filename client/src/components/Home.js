@@ -1,106 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import "./css/home.css"
+import { NavLink, useNavigate } from 'react-router-dom';
+
 export const Home = () => {
+  const history = useNavigate();
+
+  const checkLogin = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      history("/home")
+    }
+  }
+  useEffect(() => {
+    checkLogin()
+  }, [])
+
   return (
-    <body className="homee-main">
-      <div class="container-fluid">
-        <div class="row">
-          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">
-                    <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file"></span>
-                    Orders
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Products
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="users"></span>
-                    Customers
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2"></span>
-                    Reports
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="layers"></span>
-                    Integrations
-                  </a>
-                </li>
-              </ul>
-
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Saved reports</span>
-                <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle"></span>
-                </a>
-              </h6>
-              <ul class="nav flex-column mb-2">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Current month
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Last quarter
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Social engagement
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Year-end sale
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Dashboard</h1>
-              <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group mr-2">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                </div>
-                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                  <span data-feather="calendar"></span>
-                  This week
-                </button>
-              </div>
-            </div>
-            <h2>Section title</h2>
-          </main>
+    <>
+      <div classNameName="home">
+        <div className="jumbotron p-4 p-md-5 text-white bg-teal">
+          <div className="col-md-6 px-0">
+            <h1 className="display-4 font-italic lead">Unlock Your Freelancing Potential: Find Your Next Gig with Ease</h1>
+            <p className="lead my-3">Join a Thriving Community of Freelancers and Clients: Get Access to High-Quality Projects, Collaborate with Top Talent, and Grow Your Business.</p>
+            <NavLink to="/signup">
+              <p className="lead mb-0"><a className="text-white font-weight-bold">Sign Up to eKalah...</a></p>
+            </NavLink>
+          </div>
         </div>
+        <div className="jumbotron p-4 p-md-5 text-white bg-green">
+          <div class="col-md-8 offset-md-4">
+            <h1 className="display-3 font-italic lead text-teal">Collaborate with <br /> Top Talent</h1>
+            <p className="lead my-3 text-teal">Our community of freelancers is made up of the best and brightest in their respective fields. Work alongside other experts to create amazing projects and build your network. <br /> Already have an account?</p>
+            <NavLink to="/login">
+              <p className="lead mb-0"><a className="text-teal font-weight-bold">Sign In to eKalah...</a></p>
+            </NavLink>
+          </div>
+        </div>
+
       </div>
-    </body>
+    </>
   )
 }
 export default Home;

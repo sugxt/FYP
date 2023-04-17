@@ -10,8 +10,8 @@ const Navbar = () => {
         return(
           <>
           
-                <li className="nav-item active">
-                  <NavLink className="nav-link" to="/">Home</NavLink>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/home">Home</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/about">About</NavLink>
@@ -20,7 +20,7 @@ const Navbar = () => {
                   <NavLink className="nav-link" to="/status">Status</NavLink>
                 </li>
                 <li className="nav-item">
-                   <NavLink className="nav-link" to="/packages/add">Packages</NavLink>
+                   <NavLink className="nav-link" to="/packages">Packages</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/logout">Logout</NavLink>
@@ -30,14 +30,8 @@ const Navbar = () => {
       } else {
         return(
           <>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/">Home</NavLink>
-            </li>
             <li className="nav-item">
-                  <NavLink className="nav-link" to="/about">About</NavLink>
-            </li>
-            <li className="nav-item">
-                  <NavLink className="nav-link" to="/status">Status</NavLink>
+              <NavLink className="nav-link" to="/home">Home</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">Login</NavLink>
