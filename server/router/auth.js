@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const authenticate =  require("../middleware/authenticate")
 const cookieParser = require('cookie-parser')
-
 router.use(cookieParser())
 
 require('../db/conn');
@@ -193,5 +192,16 @@ router.patch('/updateuser', authenticate, async (req,res) => {
     } catch (error) {
         res.status(500).json(error)
     }
+})
+
+router.patch('/packages/update', authenticate, async (req,res)=> {
+
+        try{
+        const {id, package_name,description,price,image_url} = req.body;
+        const update = await Package.findByIdAndUpdate({_id:id}, req.body, {new:true})
+        return res.status(200).send(update)
+        } catch(error){
+            
+        }
 })
 module.exports = router;
