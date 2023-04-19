@@ -29,9 +29,15 @@ const UpdateUser = () => {
     e.preventDefault()
     const {name, email, phone} = update;
     console.log(update)
-    const success = await axios.patch('/updateuser',update)
-    console.log(success)
-    window.alert(success)
+    try {
+      const success = await axios.patch('/updateuser',update)
+      if (success.status === 200){
+        window.alert("User Updated")
+      }
+    } catch (error) {
+      window.alert("Could Not Update User")
+    }
+    
   }
 
   useEffect(() => {

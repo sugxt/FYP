@@ -33,10 +33,17 @@ const UpdatePackage = () => {
       const user_email = data;
       console.log(id)
       console.log(user_email)
-      const success = await axios.patch('/packages/update',{package_name, price, description,id, user_email});
-      console.log(success)
-    }
 
+      try {
+        const success = await axios.patch('/packages/update',{package_name, price, description,id, user_email});
+        if (success.status === 200){
+          window.alert("Package Updated")
+        }
+      } catch (error) {
+        window.alert("Package Could Not Be Updated")
+      }
+
+    }
     
     useEffect(() => {
       getEmail()
