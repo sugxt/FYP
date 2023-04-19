@@ -197,9 +197,15 @@ router.patch('/updateuser', authenticate, async (req,res) => {
 router.patch('/packages/update', authenticate, async (req,res)=> {
 
         try{
-        const {id, package_name,description,price,image_url} = req.body;
+        const {id, user_email, package_name,description,price,image_url} = req.body;
+        const emailMatch = await Package.findById({_id:id})
+        if(emailMatch.user_email != user_email){
+            return res.status(412).send({message:'Email Doesnt Match'})
+        } else{    
+
         const update = await Package.findByIdAndUpdate({_id:id}, req.body, {new:true})
-        return res.status(200).send(update)
+        return res.status(200).json({message:"Packages Updated"})
+        }
         } catch(error){
             
         }
