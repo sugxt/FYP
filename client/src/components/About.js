@@ -55,7 +55,9 @@ const About = () => {
                   <NavLink to='/packages'>
                 <button>View Packages</button>
                 </NavLink>
-                <button>Home</button>
+                <NavLink to="/about/update">
+                <button>Update Info</button>
+                </NavLink>
               </div>
             </div>
           </div>

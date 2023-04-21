@@ -6,7 +6,8 @@ import axios from 'axios'
 const GetPackages = () => {
   const history = useNavigate();
   const [products, setProducts] = useState("");
-  const [user, setUser] =  useState("");
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
 
   const callPackages = async () => {
 
@@ -23,6 +24,7 @@ const GetPackages = () => {
     try {
       const userData = await axios.get('/getdata');
       setUser(userData.data.name)
+      setEmail(userData.data.email)
     } catch (error) {
       console.log(error)
     }
@@ -42,10 +44,10 @@ const GetPackages = () => {
             <h1 className='font-weight-bold'>Welcome {user}</h1>
             <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
             <p>
-            <NavLink to="/packages/add">
-              <a  className="btn bg-white font-weight-bold text-teal">Create a Package</a>
+              <NavLink to="/packages/add">
+                <a className="btn bg-white font-weight-bold text-teal">Create a Package</a>
               </NavLink>
-          </p>
+            </p>
           </div>
         </section>
 
@@ -69,10 +71,15 @@ const GetPackages = () => {
                         <p className="card-text"><small className="font-weight-bold">Price: {product.price}$</small></p>
                         <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
                         <div className="d-flex justify-content-between align-items-center">
-                          <div className="btn-group">
-                          <NavLink to={`/packages/${product._id}`}>
-                            <button type="button" className="btn btn-sm btn-outline-secondary">View Package</button>
-                          </NavLink>
+                          <div className="btn-toolbar">
+                            <NavLink to={`/packages/${product._id}`}>
+                              <button type="button" className="btn btn-sm mr-3">View Package</button>
+                            </NavLink>
+                            {email === product.user_email && (
+                              <NavLink to={`/packages/update/${product._id}`}>
+                                <button type="button" className="btn btn-sm mr-3">Edit Package</button>
+                              </NavLink>
+                            )}
                           </div>
                         </div>
                       </div>

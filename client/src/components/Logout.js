@@ -21,6 +21,7 @@ const Logout = () => {
             }else{
               console.log("Logged Out")
               localStorage.removeItem("token")
+              window.location.reload()
             }
           }).catch((err) => {
             console.log(err)

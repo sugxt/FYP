@@ -53,6 +53,7 @@ const Login = () => {
       console.log("Successfull Login");
       localStorage.setItem("token", data.token)
       history('/')
+      window.location.reload();
 
       //history("/login");
     }

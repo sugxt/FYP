@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
 import "../css/indpackage.css"
@@ -7,6 +7,7 @@ import "../css/indpackage.css"
 const IndividualPackage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [email, setEmail] = useState("");
   const history = useNavigate()
 
   const callPackages = async () => {
@@ -20,7 +21,17 @@ const IndividualPackage = () => {
     }
   }
 
+  const getData = async () => {
+    try {
+      const res = await axios.get('/getdata');
+      setEmail(res.data.email)
+    } catch (error) {
+
+    }
+  }
+
   useEffect(() => {
+    getData()
     callPackages()
   })
 
@@ -52,6 +63,11 @@ const IndividualPackage = () => {
                     <li class="list-group-item">E-Mail: {product.user_email}</li>
                   </ul>
                   <button class="btn btn-primary mt-3">Buy Package</button>
+                  {email === product.user_email && (
+                    <NavLink to={`/packages/update/${product._id}`}>
+                      <button type="button" className="btn btn-primary mt-3">Edit Package</button>
+                    </NavLink>
+                  )}
                 </div>
               </div>
             </div>
