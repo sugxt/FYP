@@ -62,12 +62,14 @@ const IndividualPackage = () => {
                     <li class="list-group-item">Freelancer: {product.user_name}</li>
                     <li class="list-group-item">E-Mail: {product.user_email}</li>
                   </ul>
-                  <button class="btn btn-primary mt-3">Buy Package</button>
+                  <div className="btn-toolbar">
+                  <button class="btn mr-3 mt-3">Buy Package</button>
                   {email === product.user_email && (
                     <NavLink to={`/packages/update/${product._id}`}>
-                      <button type="button" className="btn btn-primary mt-3">Edit Package</button>
+                      <button type="button" className="btn mr-3 mt-3">Edit Package</button>
                     </NavLink>
                   )}
+                  </div>
                 </div>
               </div>
             </div>

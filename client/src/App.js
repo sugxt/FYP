@@ -13,6 +13,7 @@ import GetPackages from './components/Packages/GetPackages';
 import UpdateUser from './components/UpdateUser';
 import Logout from './components/Logout';
 import UpdatePackage from './components/Packages/UpdatePackage';
+import Dashboard from './components/Admin/Dashboard';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
       <Route path="/packages" element={<GetPackages />} />
       <Route path="/about/update" element={<UpdateUser />} />
       <Route path="/packages/update/:id" element={<UpdatePackage />} />
+      <Route path="/admin/dashboard" element={<Dashboard/>} />
       <Route path="/logout" element={<Logout />} />
     </Routes>
     </>

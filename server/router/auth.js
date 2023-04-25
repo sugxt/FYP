@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const authenticate =  require("../middleware/authenticate")
 const cookieParser = require('cookie-parser')
+const multer = require('multer')
 router.use(cookieParser())
+const adminauth = require('../middleware/adminauth')
+
 
 require('../db/conn');
 const User = require('../model/userSchema')
@@ -209,5 +212,26 @@ router.patch('/packages/update', authenticate, async (req,res)=> {
         } catch(error){
             
         }
+})
+
+
+
+
+// Admin Controllers
+router.get("/admin",adminauth, async (req,res)=> {
+    res.json(req.rootUser.role)
+})
+
+router.get('/getusers',adminauth, async (req,res)=>{
+    const users = await User.find({});
+    res.status(200).json({ users });
+});
+
+router.patch('/admin/users', adminauth, async(req,res) => {
+    try {
+        
+    } catch (error) {
+        res.json(error)
+    }
 })
 module.exports = router;
