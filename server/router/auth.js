@@ -227,11 +227,38 @@ router.get('/getusers',adminauth, async (req,res)=>{
     res.status(200).json({ users });
 });
 
-router.patch('/admin/users', adminauth, async(req,res) => {
+router.delete('/admin/deleteuser', adminauth, async(req,res)=> {
     try {
-        
+        const {id, name, email, photo, phone, role} = req.body;
+
+        const userDelete = await User.findByIdAndDelete({_id:id})
+
+        return res.status(201).send(userDelete)
     } catch (error) {
         res.json(error)
+    }
+})
+
+router.delete('/admin/deletepackage', adminauth, async(req,res)=> {
+    try {
+        const {id} = req.body;
+
+        const packageDelete = await Package.findByIdAndDelete({_id:id})
+
+        return res.status(201).send(packageDelete)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+router.patch("/admin/updateuser", adminauth, async(req,res)=> {
+    try {
+        const {id} = req.body;
+
+        const upuser = await User.findByIdAndUpdate({_id:id}, req.body, {new:true})
+        return res.status(201).json({message:"User Updated"})
+    } catch (error) {
+        return res.json(error)
     }
 })
 module.exports = router;

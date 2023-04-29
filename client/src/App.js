@@ -14,6 +14,8 @@ import UpdateUser from './components/UpdateUser';
 import Logout from './components/Logout';
 import UpdatePackage from './components/Packages/UpdatePackage';
 import Dashboard from './components/Admin/Dashboard';
+import AdminPackage from './components/Admin/AdminPackage';
+import AdminUser from './components/Admin/AdminUser';
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
       <Route path="/packages/update/:id" element={<UpdatePackage />} />
       <Route path="/admin/dashboard" element={<Dashboard/>} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/admin/userupdate/:id" element={<AdminUser />} />
+      <Route path="/admin/packageupdate/:id" element={<AdminPackage />} />
     </Routes>
     </>
   )

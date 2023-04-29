@@ -5,6 +5,7 @@ const UpdatePackage = () => {
   const [packageid, setPackageid] = useState({ id: '' })
   const [update, setUpdate] = useState({ package_name: '', price: '', description: '' })
   const [data, setUserData] = useState({ user_email: '' })
+  const [product, setProduct] = useState("");
   const { id } = useParams();
 
   const getEmail = async () => {
@@ -19,6 +20,12 @@ const UpdatePackage = () => {
   const getId = async () => {
     setPackageid(id)
 
+  }
+  const getPackage = async () => {
+    const res = await axios.get('/getpackages')
+    const prod = res.data.packages
+    const indPackage = prod.find(p => p._id === id)
+    setProduct(indPackage)
   }
   const handleInput = (e) => {
     const name = e.target.name;
@@ -46,6 +53,7 @@ const UpdatePackage = () => {
   }
 
   useEffect(() => {
+    getPackage()
     getEmail()
     getId()
   }, [])
@@ -66,15 +74,15 @@ const UpdatePackage = () => {
                   <form>
                     <div className="form-group">
                       <label for="name">Package Name:</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='package_name' />
+                      <input className='form-control' onChange={handleInput} type="text" name='package_name' defaultValue={product.package_name} />
                     </div>
                     <div className="form-group">
                       <label for="email">Price of the Package</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='price' />
+                      <input className='form-control' onChange={handleInput} type="text" name='price' defaultValue={product.price} />
                     </div>
                     <div className="form-group">
                       <label for="phone">Description:</label>
-                      <textarea className='form-control' onChange={handleInput} type="text" name='description' />
+                      <textarea className='form-control' onChange={handleInput} type="text" name='description' defaultValue={product.description} />
                     </div>
                     <button className='status-button' onClick={postUpdate}>Update</button>
                   </form>
