@@ -77,10 +77,10 @@ const AdminUser = () => {
             <div className="user-info-guide">
               <h5>User Information Guide</h5>
               <ul>
-                <li><i className="fas fa-info-circle"></i> Provide your full name.</li>
-                <li><i className="fas fa-info-circle"></i> Enter your email address.</li>
+                <li><i className="fas fa-info-circle"></i> Provide the User's full name.</li>
+                <li><i className="fas fa-info-circle"></i> Enter a proper email address</li>
                 <li><i className="fas fa-info-circle"></i> Provide a valid phone number.</li>
-                <li><p className="font-weight-bold"></p> Please note that you won't have access to your previous packages if you change your e-mail </li>
+                <li><p className="font-weight-bold"></p> Please note that the user won't have access to your previous packages if you change their e-mail </li>
               </ul>
             </div>
             </div>
