@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import Navbar from './Navbar';
+
 const UpdateUser = () => {
 
-  const history = useNavigate();
   const [user, setUserData] = useState({ name: '', email: '', phone: '' });
   const [update, setUpdate] = useState({ name: '', email: '', phone: '' });
 
@@ -47,7 +48,8 @@ const UpdateUser = () => {
 
   return (
     <>
-      <section className="jumbotron text-center bg-teal text-white">
+    <Navbar/>
+      <section className="jumbotron jumbotron-fluid text-center bg-teal text-white">
         <div className="container">
           <h1 className='font-weight-bold'>Update User Information</h1>
         </div>
@@ -62,17 +64,17 @@ const UpdateUser = () => {
                   <form>
                     <div className="form-group">
                       <label for="name">Name:</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='name' defaultValue={user.name} />
+                      <input className='form-control' onChange={handleInput} type="text" name='name' placeholder={user.name} />
                     </div>
                     <div className="form-group">
                       <label for="email">Email:</label>
-                      <input className='form-control' onChange={handleInput} type="email" name='email' defaultValue={user.email} />
+                      <input className='form-control' onChange={handleInput} type="email" name='email' placeholder={user.email} />
                     </div>
                     <div className="form-group">
                       <label for="phone">Phone:</label>
-                      <input className='form-control' onChange={handleInput} type="number" name='phone' defaultValue={user.phone} />
+                      <input className='form-control' onChange={handleInput} type="number" name='phone' placeholder={user.phone} />
                     </div>
-                    <button className='status-button' onClick={postUpdate}>Update</button>
+                    <button className='btn btn-primary btn-block bg-dark border-dark' onClick={postUpdate}>Update</button>
                   </form>
                 </div>
               </div>
@@ -81,6 +83,7 @@ const UpdateUser = () => {
             <div className="user-info-guide">
               <h5>User Information Guide</h5>
               <ul>
+              <li><i className="fas fa-info-circle"></i> <p className='font-weight-bold'>Please Make Sure to Edit All of The Fields Before Submitting</p></li>
                 <li><i className="fas fa-info-circle"></i> Provide your full name.</li>
                 <li><i className="fas fa-info-circle"></i> Enter your email address.</li>
                 <li><i className="fas fa-info-circle"></i> Provide a valid phone number.</li>

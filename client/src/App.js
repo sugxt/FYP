@@ -16,11 +16,11 @@ import UpdatePackage from './components/Packages/UpdatePackage';
 import Dashboard from './components/Admin/Dashboard';
 import AdminPackage from './components/Admin/AdminPackage';
 import AdminUser from './components/Admin/AdminUser';
+import BuyPackage from './components/Packages/BuyPackage';
 
 const App = () => {
   return (
     <>
-      <Navbar />
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<GetPackages />} />
@@ -33,6 +33,7 @@ const App = () => {
       <Route path="/packages" element={<GetPackages />} />
       <Route path="/about/update" element={<UpdateUser />} />
       <Route path="/packages/update/:id" element={<UpdatePackage />} />
+      <Route path="/packages/buy/:id" element={<BuyPackage />} />
       <Route path="/admin/dashboard" element={<Dashboard/>} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/admin/userupdate/:id" element={<AdminUser />} />

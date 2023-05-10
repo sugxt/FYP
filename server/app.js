@@ -10,6 +10,8 @@ app.use(express.json());
 
 app.use(require('./router/auth'));
 
+app.use('/public',express.static('public'))
+
 const PORT = process.env.PORT;
 
 

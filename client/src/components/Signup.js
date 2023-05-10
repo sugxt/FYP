@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import "../App.css"
 import { NavLink, useNavigate } from "react-router-dom";
-import Logo from "../images/eKalah.png"
+import Logo from "../images/eKalahBlack.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
 
@@ -39,10 +41,10 @@ const Signup = () => {
     console.log(data.status)
 
     if (res.status === 422 || !data) {
-      window.alert("Invalid Registration");
+      toast.error("Invalid Registration");
       console.log("Invalid Registration");
     } else {
-      window.alert("Registration Successful");
+      toast.success("Registration Successful");
       console.log("Successfull Registration");
 
       history("/login");
@@ -53,9 +55,10 @@ const Signup = () => {
   return (
     <>
       <body className="login-home-body">
+        <ToastContainer/>
         <div className="container">
           <article className="card-body mx-auto" style={{ maxWidth: 400 + 'px' }}>
-            <img className="mb-4" src={Logo} alt="" />
+          <img className="mb-4" src={Logo} alt="" style={{maxWidth: "100%", height: "auto"}} />
             <h4 className="card-title mt-3 text-center">Create Account</h4>
             <p className="text-center">Get started with your free account</p>
             <p className="divider-text">
@@ -132,7 +135,7 @@ const Signup = () => {
               Submit
             </button>
               </div>
-              <p className="text-center">Have an account? <NavLink to="/login"><a>Log In</a></NavLink> </p>
+              <p className="text-center">Have an account? <NavLink to="/login"><a className='text-dark'>Log In</a></NavLink> </p>
             </form>
           </article>
 

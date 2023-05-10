@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
+import Navbar from '../Navbar';
+
 const UpdatePackage = () => {
   const [packageid, setPackageid] = useState({ id: '' })
   const [update, setUpdate] = useState({ package_name: '', price: '', description: '' })
   const [data, setUserData] = useState({ user_email: '' })
   const [product, setProduct] = useState("");
   const { id } = useParams();
+  const history = useNavigate();
 
   const getEmail = async () => {
     try {
@@ -29,7 +32,7 @@ const UpdatePackage = () => {
   }
   const handleInput = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    const value = e.target.value || e.target.defaultValue;
 
     setUpdate({ ...update, [name]: value });
   }
@@ -52,6 +55,20 @@ const UpdatePackage = () => {
 
   }
 
+  const postDelete = async (e) => {
+    e.preventDefault()
+    const id = packageid;
+    const user_email = data;
+
+    try {
+      const delpkg = await axios.delete("/packages/delete",{data: {id, user_email}})
+      console.log(delpkg)
+      history("/packages")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getPackage()
     getEmail()
@@ -59,6 +76,7 @@ const UpdatePackage = () => {
   }, [])
   return (
     <>
+    <Navbar/>
      <section className="jumbotron text-center bg-teal text-white">
         <div className="container">
           <h1 className='font-weight-bold'>Update Package Information</h1>
@@ -74,17 +92,18 @@ const UpdatePackage = () => {
                   <form>
                     <div className="form-group">
                       <label for="name">Package Name:</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='package_name' defaultValue={product.package_name} />
+                      <input className='form-control' onChange={handleInput} type="text" name='package_name' placeholder={product.package_name} />
                     </div>
                     <div className="form-group">
                       <label for="email">Price of the Package</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='price' defaultValue={product.price} />
+                      <input className='form-control' onChange={handleInput} type="text" name='price' placeholder={product.price} />
                     </div>
                     <div className="form-group">
                       <label for="phone">Description:</label>
-                      <textarea className='form-control' onChange={handleInput} type="text" name='description' defaultValue={product.description} />
+                      <textarea className='form-control' onChange={handleInput} type="text" name='description' placeholder={product.description} />
                     </div>
-                    <button className='status-button' onClick={postUpdate}>Update</button>
+                    <button className='btn btn-primary btn-block bg-dark border-dark' onClick={postUpdate}>Update</button>
+                    <button className='btn btn-primary btn-block bg-dark border-dark' onClick={postDelete}>Delete</button>
                   </form>
                 </div>
               </div>
@@ -93,6 +112,7 @@ const UpdatePackage = () => {
             <div className="user-info-guide">
               <h5>User Information Guide</h5>
               <ul>
+              <li><i className="fas fa-info-circle"><p className='font-weight-bold'>Please Make Sure to Edit All of The Fields Before Submitting</p></i></li>
                 <li><i className="fas fa-info-circle"></i> Provide your full name.</li>
                 <li><i className="fas fa-info-circle"></i> Enter your email address.</li>
                 <li><i className="fas fa-info-circle"></i> Provide a valid phone number.</li>

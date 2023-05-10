@@ -7,6 +7,18 @@ const cookieParser = require('cookie-parser')
 const multer = require('multer')
 router.use(cookieParser())
 const adminauth = require('../middleware/adminauth')
+const path = require("path")
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  })
+  const upload = multer({ storage: storage })
 
 
 require('../db/conn');
@@ -158,10 +170,10 @@ router.get('/logout',(req,res) =>{
 });
 
 // Add and Get Info about Packages
-router.post('/packages', authenticate, async (req,res) => {
+router.post('/packages', authenticate, upload.single('image_url'), async (req,res) => {
     try {
-        const {package_name, user_name, user_email,image_url,description, price} = req.body;
-    
+        const {package_name, user_name, user_email,description, price} = req.body;
+        const image_url = req.file.filename  
         if(!package_name || !user_name || !user_email || !image_url || !description || !price) {
             return res.status(422).json({error: "Please enter all the required fields"})
     
@@ -178,6 +190,21 @@ router.get('/getpackages',authenticate, async (req,res)=>{
         const packages = await Package.find({});
         res.status(200).json({ packages });
     });
+
+router.post('/buypackage', authenticate, async (req,res) => {
+    try {
+        const {name, email, message, package_id} = req.body;
+        if(!name || !email || !message){
+            return res.status(422).json({error:"Please Fill All Required Fields"})
+        }
+        const buyPackage = await Package.findOne({_id:package_id})
+        const userBuy = await buyPackage.addBuyer(name,email,message)
+        await buyPackage.save();
+        res.status(201).json({message:"Done"})
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 // Update Routes and Controllers
 
@@ -212,6 +239,23 @@ router.patch('/packages/update', authenticate, async (req,res)=> {
         } catch(error){
             
         }
+})
+
+router.delete('/packages/delete', authenticate, async (req,res)=> {
+
+    try{
+    const {id, user_email} = req.body;
+    const emailMatch = await Package.findById({_id:id})
+    if(emailMatch.user_email != user_email){
+        return res.status(412).send({message:'Email Doesnt Match'})
+    } else{    
+
+    const pkgDelete = await Package.findByIdAndDelete({_id:id})
+    return res.status(201).json({message:"Package Deleted"})
+    }
+    } catch(error){
+        return res.status(500).send("Error")
+    }
 })
 
 

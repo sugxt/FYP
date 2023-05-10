@@ -3,11 +3,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import "../css/about.css"
 import axios from 'axios'
+import Navbar from '../Navbar';
+import LoadingScreen from '../Others/LoadingScreen';
+
+
 const GetPackages = () => {
   const history = useNavigate();
   const [products, setProducts] = useState("");
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const callPackages = async () => {
 
@@ -25,6 +30,7 @@ const GetPackages = () => {
       const userData = await axios.get('/getdata');
       setUser(userData.data.name)
       setEmail(userData.data.email)
+      setIsLoading(false);
     } catch (error) {
       console.log(error)
     }
@@ -35,63 +41,67 @@ const GetPackages = () => {
     getUser()
   }, [])
   return (
-    <body>
+    <>
+      <Navbar />
+      <div>
+        {isLoading ? <LoadingScreen /> : (
+          <div>
+            <body>
+              <main role="main">
 
-      <main role="main">
+                <section className="jumbotron jumbotron-fluid text-center bg-teal text-white pd-10">
+                  <div className="container">
+                    <h1 className='font-weight-bold'>Welcome {user}</h1>
+                    <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
+                    <p>
+                      <NavLink to="/packages/add">
+                        <a className="btn border-white font-weight-bold text-white">Create a Package</a>
+                      </NavLink>
+                    </p>
+                  </div>
+                </section>
 
-        <section className="jumbotron text-center bg-teal text-white">
-          <div className="container">
-            <h1 className='font-weight-bold'>Welcome {user}</h1>
-            <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
-            <p>
-              <NavLink to="/packages/add">
-                <a className="btn bg-white font-weight-bold text-teal">Create a Package</a>
-              </NavLink>
-            </p>
-          </div>
-        </section>
+                <div className="album py-5">
+                  <div className="container">
 
-        <div className="album py-5 bg-light">
-          <div className="container">
-
-            <div className="row">
-              {
-                products && products.data.packages.map((product) => (
-                  <div className="col-md-4">
-                    <div className="card mb-4 shadow-sm">
-                      <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#7B9E7F" />
-                      </svg>
-
-                      <div className="card-body">
-                        <h5 className="card-title">{product.package_name}</h5>
-                        <p className="card-text">{product.description}.</p>
-                        <p className="card-text"><small className="font-weight-bold">Price: {product.price}$</small></p>
-                        <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div className="btn-toolbar">
-                            <NavLink to={`/packages/${product._id}`}>
-                              <button type="button" className="btn btn-sm mr-3">View Package</button>
-                            </NavLink>
-                            {email === product.user_email && (
-                              <NavLink to={`/packages/update/${product._id}`}>
-                                <button type="button" className="btn btn-sm mr-3">Edit Package</button>
-                              </NavLink>
-                            )}
+                    <div className="row">
+                      {
+                        products && products.data.packages.map((product) => (
+                          <div className="col-md-4">
+                            <div className="card mb-4 shadow-sm">
+                              <img src={`http://localhost:5000/public/images/${product.image_url}`} class="card-img-top" alt="..." height="200" width="200" />
+                              <div className="card-body">
+                                <h5 className="card-title">{product.package_name}</h5>
+                                <p className="card-text">{product.description}.</p>
+                                <p className="card-text"><small className="font-weight-bold">Price: {product.price}$</small></p>
+                                <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <div className="btn-toolbar">
+                                    <NavLink to={`/packages/${product._id}`}>
+                                      <button type="button" className="btn btn-sm mr-3 text-dark border-dark">View Package</button>
+                                    </NavLink>
+                                    {email === product.user_email && (
+                                      <NavLink to={`/packages/update/${product._id}`}>
+                                        <button type="button" className="btn btn-sm mr-3 text-dark border-dark">Edit Package</button>
+                                      </NavLink>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        ))}
                     </div>
                   </div>
-                ))}
-            </div>
-          </div>
-        </div>
+                </div>
 
-      </main>
-    </body>
+              </main>
+            </body>
+          </div>
+        )}
+      </div>
+
+    </>
     // <div className="body-package">
     //   <div className='package-body'>
     //     <section className='packages-cards'>

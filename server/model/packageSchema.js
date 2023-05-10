@@ -23,10 +23,36 @@ const packageSchema = new mongoose.Schema({
     price: {
         type: String,
         required: true,
-    }
+    },
+    buyers:[
+        {
+            name:{
+                type: String,
+                required: true,
+            },
+            email:{
+                type: String,
+                required: true,
+            },
+            message:{
+                type: String,
+                required: true
+            }
+        }
+    ],
 },{
     timestamps: true
 })
+
+packageSchema.methods.addBuyer = async function(name, email, message){
+    try {
+        this.buyers = this.buyers.concat({name,email,message});
+        await this.save();
+        return this.buyers;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const Package = mongoose.model('Package',packageSchema)
 

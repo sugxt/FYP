@@ -5,106 +5,16 @@
     box-sizing: border-box;
     font-family: Montserrat;
 }
-.about-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: white;
-}
-.about-card {
-    position: relative;
-    width: 450px;
-    height: 230px;
-    background: rgb(255, 255, 255);
-    border-radius: 25px;
-    box-shadow: 0 35px 80px rgba(0, 0, 0,0.15);
-    transition: 0.5s
-}
-.about-card:hover{
-    height: 400px;
-}
-.imagpx{
-    position: absolute;
-    left:33%;
-    top: -50px;
-    width: 150px;
-    height: 150px;
-    background: #fff;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0,0.35);
-    overflow: hidden;
-}
-.imagpx img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-}
-.about-card .content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-}
-.about-card .content .details {
-    padding: 40px;
-    text-align: center;
-    width: 100%;
-    transition: 0.5s;
-    transform: translateY(150px);
-}
-.about-card:hover .content .details{
-    transform: translateY(0px);
-}
-.about-card .content .details h2 {
-    font-size: 25px;
-    font-weight: 600;
-    color: #555;
-    line-height: 1.2em;
-}
-.about-card .content .details h2 span {
-    font-size: 0.75em;
-    font-weight: 500;
-    opacity: 0.5;
-}
-.about-card .content .details .data {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
-.about-card .content .details .data h3 {
-    font-size: 1em;
-    color: #555;
-    line-height: 1.2em;
-    font-weight: 600;
-}
-.about-card .content .details .data h3 span {
-    font-size: 0.85em;
-    font-weight: 400;
-    opacity: 0.5;
-}
-.about-card .content .details .actionBtn{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-.about-card .content .details .actionBtn button{
-    padding: 10px 30px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    font-weight: 500;
-    background: rgb(175, 225, 175);
-    color: #fff;
-}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f6d365;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgb(138, 138, 138), rgb(0, 0, 0));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom,  rgb(138, 138, 138), rgb(0, 0, 0))
+    }
 
 .home-main{
     display: flex;

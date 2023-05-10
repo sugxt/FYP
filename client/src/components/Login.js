@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import "../App.css"
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import Logo from '../images/eKalah.png'
+import Logo from '../images/eKalahBlack.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
 
@@ -46,14 +49,13 @@ const Login = () => {
     const data = await res.json();
 
     if (res.status === 400 || !data) {
-      window.alert("Invalid Login");
+      toast.error("Invalid Login");
       console.log("Invalid Login");
     } else {
-      window.alert("Login Successful");
+      toast.success("Login Successful");
       console.log("Successfull Login");
       localStorage.setItem("token", data.token)
       history('/')
-      window.location.reload();
 
       //history("/login");
     }
@@ -67,10 +69,11 @@ const Login = () => {
   return (
     <>
       <body className="login-home-body">
+      <ToastContainer />
 
         <form className="home-form-signin" method='POST'>
-          <img className="mb-4" src={Logo} alt="" />
-          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+          <NavLink to='/'><img className="mb-4" src={Logo} alt="" style={{maxWidth: "100%", height: "auto"}} /></NavLink>
+          <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
           <label for="inputEmail" className="sr-only">Email address</label>
           <input
             className="form-control mt-1"
@@ -78,7 +81,7 @@ const Login = () => {
             name="email"
             type="text"
             onChange={handleInputs}
-            placeholder="Enter email"
+            placeholder="Enter Your Email"
             autoComplete='off'
           />
           <label for="inputPassword" className="sr-only">Password</label>
@@ -87,10 +90,13 @@ const Login = () => {
               className="form-control mt-1"
               value = {user.password}
               onChange={handleInputs}
-              placeholder="Enter password"
+              placeholder="Enter Your Password"
               name = "password"
             />
           <div className="checkbox mb-3">
+            <label>
+              <p className='text-muted'>Don't Have An Account? <NavLink to="/signup"> <a className='text-dark'> Sign Up</a></NavLink></p>
+            </label>
             <label>
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
@@ -99,46 +105,6 @@ const Login = () => {
           <p className="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
         </form>
       </body>
-      {/* <section className='login-main'>
-      <div className="Auth-form-container">
-      <form className="Auth-form" method='POST'>
-        <div className="Auth-form-content">
-          <h2 className='Auth-form-image'> <img src = {Logo}/> </h2>
-          <h4 className="Auth-form-title">Sign In</h4>
-          <div className="form-group mt-3">
-            <label>Email Address</label>
-            <input
-              className="form-control mt-1"
-              value = {user.email}
-              name="email"
-              type = "text"
-              onChange={handleInputs}
-              placeholder="Enter email"
-              autoComplete='off'
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control mt-1"
-              value = {user.password}
-              onChange={handleInputs}
-              placeholder="Enter password"
-              name = "password"
-            />
-          </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn" value = 'login' onClick={PostData}>
-              Submit
-            </button>
-          </div>
-          <p className="forgot-password text-right mt-2"></p>
-           <a className="fpassword" href="/">Forgot password?</a>
-        </div>
-      </form>
-    </div>
-      </section> */}
     </>
   )
 }

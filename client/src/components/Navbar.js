@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import {NavLink} from "react-router-dom";
 import "../App.css"
-import eKalah from "../images/eKalah.png"
+import eKalah from "../images/eKalahBlack.png"
+
 const Navbar = () => {
+  
   const RenderMenu = () =>{
       const token = localStorage.getItem("token")
       if (token) {
         return(
           <>
-          
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/home">Home</NavLink>
                 </li>
@@ -45,8 +46,8 @@ const Navbar = () => {
   }
   return (
     <>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white rounded">
-  <NavLink className="navbar-brand" to="/"><img src={eKalah} alt="Logo" width={95} height={50} /></NavLink>
+    <nav className="navbar navbar-expand navbar-light bg-light py-2">
+  <NavLink className="navbar-brand" to="/"><img src={eKalah} alt="Logo" width={90} height={35} /></NavLink>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
