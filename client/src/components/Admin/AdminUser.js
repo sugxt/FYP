@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import Navbar from '../Navbar';
 
 const AdminUser = () => {
     const { id } = useParams();
@@ -43,7 +43,8 @@ const AdminUser = () => {
     }, [])
     return (
         <>
-        <section className="jumbotron text-center bg-teal text-white">
+        <Navbar/>
+        <section className="jumbotron jumbotron-fluid text-center bg-teal text-white">
         <div className="container">
           <h1 className='font-weight-bold'>Update User Information</h1>
         </div>
@@ -68,7 +69,7 @@ const AdminUser = () => {
                       <label for="phone">Phone:</label>
                       <input className='form-control' onChange={handleInput} type="number" name='phone' defaultValue={user.phone} />
                     </div>
-                    <button className='status-button' onClick={postUpdate}>Update</button>
+                    <button className='btn btn-primary btn-block bg-dark border-dark' onClick={postUpdate}>Update</button>
                   </form>
                 </div>
               </div>

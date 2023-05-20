@@ -8,6 +8,8 @@ const multer = require('multer')
 router.use(cookieParser())
 const adminauth = require('../middleware/adminauth')
 const path = require("path")
+const nodemailer = require('nodemailer')
+const axios = require('axios')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -277,7 +279,9 @@ router.delete('/admin/deleteuser', adminauth, async(req,res)=> {
 
         const userDelete = await User.findByIdAndDelete({_id:id})
 
-        return res.status(201).send(userDelete)
+        const packageDelete = await Package.deleteMany({ user_email: email });
+
+        return res.status(201).send({userDelete,packageDelete})
     } catch (error) {
         res.json(error)
     }
@@ -305,4 +309,73 @@ router.patch("/admin/updateuser", adminauth, async(req,res)=> {
         return res.json(error)
     }
 })
+
+router.patch('/admin/updatepackage',adminauth, async(req,res)=>{
+    try {
+        const {id} = req.body;
+        const uppackage = await Package.findByIdAndUpdate({_id:id},req.body,{new:true})
+        return res.status(201).json({message:"Package Updated"})
+    } catch (error) {
+        return res.json(error)
+    }
+})
+
+//Payment Integration
+
+router.post('/package/buy', authenticate, async (req, res) => {
+  try {
+    const { token, amount, key, name, email, message, package_id } = req.body;
+    console.log({ name, email, message });
+    let config = {
+      headers: { 'Authorization': 'Key test_secret_key_e9ef8e9ba32a4946affd34c30a6fc2b6' }
+    };
+
+    const response = await axios.post("https://khalti.com/api/v2/payment/verify/", { token: token, amount: amount }, config);
+    if (response.data.state.name === 'Completed') {
+      try {
+        if (!name || !email || !message) {
+          return res.status(422).json({ error: "Please Fill All Required Fields" });
+        }
+        const buyPackage = await Package.findOne({ _id: package_id });
+        const userBuy = await buyPackage.addBuyer(name, email, message);
+        await buyPackage.save();
+        return res.status(201).json({ message: "Done" });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    return res.status(201).json(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Payment Information Retrieval
+
+router.get('/packages/paid', authenticate, async(req,res) => {
+    try {
+        const user = req.rootUserID
+
+    } catch (error) {
+        
+    }
+})
+
+router.get('/search/products/', authenticate, async (req, res) => {
+    try {
+      const { key } = req.query;
+  
+      // Retrieve the top 5 documents that match the key
+      const results = await Package.find({ package_name: { $regex: key, $options: 'i' } })
+        .limit(5);
+  
+      res.json(results);
+    } catch (error) {
+      // Handle any errors that occur
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred' });
+    }
+  });
+
+
 module.exports = router;

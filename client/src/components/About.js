@@ -71,7 +71,7 @@ const About = () => {
                     <div className="card mb-4" style={{ borderRadius: ".5rem" }}>
                       <div className="row g-0">
                         <div className="col-md-4 gradient-custom text-center text-white"
-                          style={{ borderTopLeftRadius: ".5rem", borderBottomLeftRadius: ".5rem" }}>
+                          style={{ borderTopLeftRadius: ".3rem", borderBottomLeftRadius: ".3rem" }}>
                           <img src={user.photo}
                             alt="Avatar" className="img-fluid my-5" style={{ width: "80px" }} />
                           <h5>{user.name}</h5>

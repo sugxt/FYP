@@ -101,7 +101,7 @@ const Packages = () => {
               <label for="productImage">Product Image</label>
               <input onChange={uploadImage} name='image_url' type="file" className="form-control" id="productImage" />
             </div>
-            <button onClick={packageForm} type="submit" className="btn btn-primary mt-3">Create Product</button>
+            <button onClick={packageForm} type="submit" className="btn btn-primary btn-block bg-dark border-dark">Create Product</button>
           </form>
         </div>
       </div>

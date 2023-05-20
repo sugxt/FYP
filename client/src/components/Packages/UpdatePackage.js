@@ -28,6 +28,7 @@ const UpdatePackage = () => {
     const res = await axios.get('/getpackages')
     const prod = res.data.packages
     const indPackage = prod.find(p => p._id === id)
+    console.log(indPackage)
     setProduct(indPackage)
   }
   const handleInput = (e) => {

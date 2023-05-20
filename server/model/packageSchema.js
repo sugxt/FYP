@@ -37,6 +37,11 @@ const packageSchema = new mongoose.Schema({
             message:{
                 type: String,
                 required: true
+            },
+            paid:{
+                type: Boolean,
+                default: false,
+                required: true,
             }
         }
     ],

@@ -150,14 +150,14 @@ const Dashboard = () => {
                                                 <Card className='mr-3 bg-dark border-rounded' style={{ width: '400px', height: '300px' }}>
                                                     <Card.Body className='justify-content-center'>
                                                         <Card.Title className='text-white'>Users</Card.Title>
-                                                        <hr className="mt-0 mb-4" />
+                                                        <hr className="mt-0 mb-4 bg-white" />
                                                         <Card.Text className="display-1 font-weight-bold mr-3 text-white">{countUser}</Card.Text>
                                                     </Card.Body>
                                                 </Card>
                                                 <Card className='bg-dark border-rounded' style={{ width: '400px', height: '300px' }}>
                                                     <Card.Body className='justify-content-center'>
                                                         <Card.Title className='text-white'>Packages</Card.Title>
-                                                        <hr className="mt-0 mb-4" />
+                                                        <hr className="mt-0 mb-4 bg-white" />
                                                         <Card.Text className="display-1 font-weight-bold mr-3 text-white">{countPackage}</Card.Text>
                                                     </Card.Body>
                                                 </Card>
@@ -184,7 +184,8 @@ const Dashboard = () => {
                                                                         <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
                                                                         <div className="d-flex justify-content-between align-items-center">
                                                                             <div className="btn-toolbar">
-                                                                                <button onClick={() => deletePackage(product._id)} className="btn btn-sm border-danger text-danger">Delete Package</button>
+                                                                                <button onClick={() => deletePackage(product._id)} className="btn btn-sm border-danger text-danger mr-3">Delete Package</button>
+                                                                                <NavLink to={`/admin/packageupdate/${product._id}`}><button className='btn btn-sm border-dark text-dark mr-3'> Edit Package</button></NavLink>
                                                                             </div>
                                                                         </div>
                                                                     </div>
