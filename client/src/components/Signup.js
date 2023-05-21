@@ -55,10 +55,9 @@ const Signup = () => {
   return (
     <>
       <body className="login-home-body">
-        <ToastContainer/>
         <div className="container">
           <article className="card-body mx-auto" style={{ maxWidth: 400 + 'px' }}>
-          <img className="mb-4" src={Logo} alt="" style={{maxWidth: "100%", height: "auto"}} />
+            <img className="mb-4" src={Logo} alt="" style={{ maxWidth: "100%", height: "auto" }} />
             <h4 className="card-title mt-3 text-center">Create Account</h4>
             <p className="text-center">Get started with your free account</p>
             <p className="divider-text">
@@ -131,9 +130,9 @@ const Signup = () => {
                 />
               </div>
               <div className="form-group">
-                            <button type="submit" className="btn btn-primary btn-block" value = "register" name="signupbtn" onClick={PostData}>
-              Submit
-            </button>
+                <button type="submit" className="btn btn-primary btn-block" value="register" name="signupbtn" onClick={PostData}>
+                  Submit
+                </button>
               </div>
               <p className="text-center">Have an account? <NavLink to="/login"><a className='text-dark'>Log In</a></NavLink> </p>
             </form>
@@ -141,78 +140,6 @@ const Signup = () => {
 
         </div>
       </body>
-      {/* <section className='login-main'>
-      <div className="Auth-form-container">
-      <form className="Auth-form" method='POST'>
-        <div className="Auth-form-content">
-          <h2 className='Auth-form-image'> <img src = {Logo} alt="Logo"/> </h2>
-          <h4 className="Auth-form-title">Register</h4>
-          <div className="form-group mt-3">
-            <label>Name</label>
-            <input
-              value = {user.name}
-              name = "name"
-              onChange={handleInputs}
-              type="text"
-              className="form-control"
-              placeholder="Enter Name"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Email Address</label>
-            <input
-              value = {user.email}
-              name = "email"
-              onChange={handleInputs}
-              type="email"
-              className="form-control"
-              placeholder="Enter your Email"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Phone Number</label>
-            <input
-              value = {user.phone}
-              onChange={handleInputs}
-              name = "phone"
-              type="text"
-              className="form-control"
-              placeholder="Enter Your Phone Number"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Password</label>
-            <input
-              name = "password"
-              type="password"
-              className="form-control"
-              placeholder="Enter your password"
-              value = {user.password}
-              onChange={handleInputs}
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Re-Enter Password</label>
-            <input
-              value = {user.cpassword}
-              onChange={handleInputs}
-              type="password"
-              name = "cpassword"
-              className="form-control"
-              placeholder="Confirm your password"
-            />
-          </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn" value = "register" name="signupbtn" onClick={PostData}>
-              Submit
-            </button>
-          </div>
-          <p className="forgot-password text-right mt-2"></p>
-          <a className="fpassword" href="/login">Already have an account?</a>
-        </div>
-      </form>
-    </div>
-      </section> */}
     </>
   )
 }

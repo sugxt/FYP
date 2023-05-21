@@ -5,6 +5,7 @@ import { Container, Row, Col, Image, Button } from "react-bootstrap"
 import axios from 'axios';
 import Navbar from './Navbar';
 import LoadingScreen from './Others/LoadingScreen';
+import Logo from '../images/eKalahWhite.png';
 
 const About = () => {
 
@@ -60,114 +61,151 @@ const About = () => {
 
   return (
     <>
-      <Navbar />
-      <div>
-        {isLoading ? <LoadingScreen /> : (
-          <div>
-            <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
-              <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                  <div className="col col-lg-6 mb-4 mb-lg-0">
-                    <div className="card mb-4" style={{ borderRadius: ".5rem" }}>
-                      <div className="row g-0">
-                        <div className="col-md-4 gradient-custom text-center text-white"
-                          style={{ borderTopLeftRadius: ".3rem", borderBottomLeftRadius: ".3rem" }}>
-                          <img src={user.photo}
-                            alt="Avatar" className="img-fluid my-5" style={{ width: "80px" }} />
-                          <h5>{user.name}</h5>
-                          <p>{user.role}</p>
-                          <NavLink to="/about/update"><button className='btn btn-sm bg-white text-dark'> Edit Info</button></NavLink>
-                        </div>
-                        <div className="col-md-8">
-                          <div className="card-body p-4">
-                            <h3 className='font-weight-bold'>Information</h3>
-                            <hr className="mt-0 mb-4" />
-                            <div className="row pt-1">
-                              <div className="col-7 mb-3">
-                                <h6>Email</h6>
-                                <p className="text-muted">{user.email}</p>
-                              </div>
-                              <div className="col-7 mb-3">
-                                <h6>Phone</h6>
-                                <p className="text-muted">{user.phone}</p>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <div>
+          <body>
+            <div className="container-fluid">
+              <div className="row">
+                <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                  <div className="sidebar-sticky pt-3">
+                    <ul className="nav flex-column">
+                      <li className="nav-item">
+                        <a className="nav-link text-white active">
+                          <span data-feather="home"></span>
+                          <NavLink className="navbar-brand" to="/"><img src={Logo} alt="Logo" width={90} height={35} /></NavLink>
+                        </a>
+                      </li>
+                      <hr className="mt-0 mb-4 bg-white" />
+                      <li className="nav-item">
+                        <NavLink to="/home" className="nav-link text-white">
+                          <span data-feather="file"></span>
+                          Home
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink to="/packages/view" className="nav-link text-white">
+                          <span data-feather="file"></span>
+                          Buyers
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink to="/home" className="nav-link text-white">
+                          <span data-feather="file"></span>
+                          Packages
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink to="/about/reset" className="nav-link text-white">
+                          <span data-feather="file"></span>
+                          Reset Password
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink to="/logout" className="nav-link text-white">
+                          <span data-feather="file"></span>
+                          Log Out
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+                <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                  <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 className="h2 font-weight-bold">Profile</h1>
+                  </div>
+                  <div className="container">
+                    <div className="row justify-content-center">
+                      <div className="col-md-6">
+                        <div className="card mb-4">
+                          <div className="card-body">
+                            <div className="text-center">
+                              <img src={user.photo} alt="Avatar" className="img-fluid rounded-circle mb-3" style={{ width: '150px', height: '150px' }} />
+                              <h4 className="card-title">{user.name}</h4>
+                              <p className="card-text">{user.role}</p>
+                              <div className="btn-toolbar justify-content-center">
+                                <NavLink to="/about/update">
+                                  <button className="btn btn-sm bg-teal text-white mr-3">Edit Info</button>
+                                </NavLink>
+                                {user.role === "admin" ? (
+                                  <NavLink to='/admin/dashboard'>
+                                    <button type="button" className="btn btn-sm bg-teal text-white mr-3">Go to Dashboard</button>
+                                  </NavLink>
+                                ) : null}
                               </div>
                             </div>
-                            <h6>Projects</h6>
-                            <hr className="mt-0 mb-4" />
-                            <div className="row pt-1">
-                              <div className="col-5 mb-3">
-                                <div className="d-flex justify-content-between">
-                                  <button type="button" className="btn btn-sm mr-3 text-dark border-dark">View Packages</button>
-                                  {user.role === "admin" ? (
-                                    <NavLink to='/admin/dashboard'> <button type="button" className="btn btn-sm mr-3 text-dark border-dark">Go to Dashboard</button></NavLink>
-                                  ) : null}
-                                </div>
+                            <hr />
+                            <div className="row">
+                              <div className="col-6">
+                                <h5>Email:</h5>
+                                <p>{user.email}</p>
                               </div>
-
-                            </div>
-                            <div className="d-flex justify-content-start">
-                              <a href="#!"><i className="fab fa-facebook-f fa-lg me-3"></i></a>
-                              <a href="#!"><i className="fab fa-twitter fa-lg me-3"></i></a>
-                              <a href="#!"><i className="fab fa-instagram fa-lg"></i></a>
+                              <div className="col-6">
+                                <h5>Phone:</h5>
+                                <p>{user.phone}</p>
+                              </div>
+                              {/* Add more user profile information fields here */}
                             </div>
                           </div>
+
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <h1 className='p-3'>Your Packages</h1>
-              <hr className="my-4" />
-              <div className="admin-packages">
-                <div className="container">
-
-                  <div className="row">
-                    {/* Checking if the E-Mail of the User Matches the E-Mail in the Package */}
-                    {products && products.data.packages
-                      .filter(product => product.user_email === user.email)
-                      .map(product => (
-                        <div className="col-md-4" key={product._id}>
-                          <div className="card mb-4 shadow-sm">
-                            <img
-                              src={`http://localhost:5000/public/images/${product.image_url}`}
-                              className="card-img-top"
-                              alt="..."
-                              height="200"
-                              width="200"
-                            />
-                            <div className="card-body">
-                              <h5 className="card-title">{product.package_name}</h5>
-                              <p className="card-text">{product.description}.</p>
-                              <p className="card-text">
-                                <small className="font-weight-bold">
-                                  Price: {product.price}$
-                                </small>
-                              </p>
-                              <p className="card-text">
-                                <small className="text-muted">{product.user_name}</small>
-                              </p>
-                              <div className="d-flex justify-content-between align-items-center">
-                                <div className="btn-toolbar">
-                                  <NavLink to={`/packages/${product._id}`}>
-                                    <button type="button" className="btn btn-sm mr-3">
-                                      View Package
-                                    </button>
-                                  </NavLink>
+                  <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 className="h2 font-weight-bold">Your Packages</h1>
+                  </div>
+                  <div className="user-packages">
+                    <div className="container">
+                      <div className="row">
+                        {products && products.data.packages
+                          .filter(product => product.user_email === user.email)
+                          .map(product => (
+                            <div className="col-md-4" key={product._id}>
+                              <div className="card mb-4 shadow-sm">
+                                <img
+                                  src={`http://localhost:5000/public/images/${product.image_url}`}
+                                  className="card-img-top"
+                                  alt="..."
+                                  height="200"
+                                  width="200"
+                                />
+                                <div className="card-body">
+                                  <h5 className="card-title">{product.package_name}</h5>
+                                  <p className="card-text">{product.description}.</p>
+                                  <p className="card-text">
+                                    <small className="font-weight-bold">
+                                      Price: {product.price}$
+                                    </small>
+                                  </p>
+                                  <p className="card-text">
+                                    <small className="text-muted">{product.user_name}</small>
+                                  </p>
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="btn-toolbar">
+                                      <NavLink to={`/packages/${product._id}`}>
+                                        <button type="button" className="btn btn-sm mr-3 bg-dark text-white border-rounded">
+                                          View Package
+                                        </button>
+                                      </NavLink>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      ))}
+                          ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </main>
               </div>
-            </section>
-          </div>
-        )}
-      </div>
+            </div>
+          </body>
+        </div>
+      )}
     </>
+
   )
 }
 

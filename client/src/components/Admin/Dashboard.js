@@ -4,6 +4,7 @@ import axios from 'axios'
 import Navbar from '../Navbar'
 import LoadingScreen from '../Others/LoadingScreen';
 import Logo from '/Git/FYP/client/src/images/eKalahWhite.png'
+import { toast } from 'react-toastify';
 import { Card } from 'react-bootstrap';
 
 const Dashboard = () => {
@@ -29,7 +30,12 @@ const Dashboard = () => {
         try {
             const del = await axios.delete('/admin/deleteuser', { data: { id } })
             console.log(del)
-            window.location.reload();
+            if(del.status === 201){
+                toast.success("User Deleted")
+            }else{
+                toast.error("Couldn't delete User")
+            }
+            
         } catch (error) {
             console.log(error)
         }
@@ -38,7 +44,11 @@ const Dashboard = () => {
         try {
             const packdel = await axios.delete("/admin/deletepackage", { data: { id } })
             console.log(packdel)
-            window.location.reload();
+            if(packdel.status === 201){
+                toast.success("Package Deleted")
+            }else{
+                toast.error("Couldn't Delete The Package")
+            }
         } catch (error) {
             console.log(error)
         }
@@ -62,7 +72,7 @@ const Dashboard = () => {
         getUsers()
         callPackages()
         console.log(elements)
-    }, [])
+    }, [elements,products])
     return (
 
         <>
@@ -99,43 +109,16 @@ const Dashboard = () => {
                                                         Packages
                                                     </NavLink>
                                                 </li> <li className="nav-item">
+                                                    <NavLink to="/about/reset" className="nav-link text-white">
+                                                        <span data-feather="file"></span>
+                                                        Reset Password
+                                                    </NavLink>
+                                                </li>
+                                                <li className="nav-item">
                                                     <NavLink to="/logout" className="nav-link text-white">
                                                         <span data-feather="file"></span>
                                                         Log Out
                                                     </NavLink>
-                                                </li>
-                                            </ul>
-
-                                            <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                                                <span>Saved reports</span>
-                                                <a className="d-flex align-items-center text-muted" aria-label="Add a new report">
-                                                    <span data-feather="plus-circle"></span>
-                                                </a>
-                                            </h6>
-                                            <ul className="nav flex-column mb-2">
-                                                <li className="nav-item">
-                                                    <a className="nav-link text-white">
-                                                        <span data-feather="file-text"></span>
-                                                        Current month
-                                                    </a>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <a className="nav-link text-white">
-                                                        <span data-feather="file-text"></span>
-                                                        Last quarter
-                                                    </a>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <a className="nav-link text-white">
-                                                        <span data-feather="file-text"></span>
-                                                        Social engagement
-                                                    </a>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <a className="nav-link text-white">
-                                                        <span data-feather="file-text"></span>
-                                                        Year-end sale
-                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>

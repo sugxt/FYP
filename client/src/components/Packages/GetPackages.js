@@ -68,7 +68,7 @@ const GetPackages = () => {
                     <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
                     <p>
                       <NavLink to="/packages/add">
-                        <a className="btn border-white font-weight-bold text-white">Create a Package</a>
+                        <a className="btn border-white font-weight-bold text-teal bg-white border-rounded">Create a Package</a>
                       </NavLink>
                     </p>
                   </div>
@@ -101,7 +101,7 @@ const GetPackages = () => {
                               <h5 className="card-title">{product.package_name}</h5>
                               <p className="card-text">{product.description}.</p>
                               <p className="card-text">
-                                <small className="font-weight-bold">Price: {product.price}$</small>
+                                <small className="font-weight-bold">Price: Rs.{product.price}</small>
                               </p>
                               <p className="card-text">
                                 <small className="text-muted">{product.user_name}</small>
@@ -129,9 +129,14 @@ const GetPackages = () => {
                     </div>
                   </div>
                 </div>
-
               </main>
             </body>
+            <footer className="bg-teal text-white text-center p-3">
+              <div className="container">
+                <p className="mb-0">eKalah &copy;</p>
+                <p className="mb-0">Final Year Project for Herald College Kathmandu.</p>
+              </div>
+            </footer>
           </div>
         )}
       </div>

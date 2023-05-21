@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
 import Navbar from '../Navbar';
+import { toast } from 'react-toastify';
 
 const UpdatePackage = () => {
   const [packageid, setPackageid] = useState({ id: '' })
@@ -48,10 +49,10 @@ const UpdatePackage = () => {
     try {
       const success = await axios.patch('/packages/update', { package_name, price, description, id, user_email });
       if (success.status === 200) {
-        window.alert("Package Updated")
+        toast.success("Package Updated")
       }
     } catch (error) {
-      window.alert("Package Could Not Be Updated")
+      toast.error("Package Could Not Be Updated")
     }
 
   }

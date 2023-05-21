@@ -17,10 +17,16 @@ import Dashboard from './components/Admin/Dashboard';
 import AdminPackage from './components/Admin/AdminPackage';
 import AdminUser from './components/Admin/AdminUser';
 import BuyPackage from './components/Packages/BuyPackage';
+import ViewBuyers from './components/Packages/ViewBuyers';
+import ViewSold from './components/Packages/ViewSold';
+import ResetPassword from './components/ResetPassword';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <>
+      <ToastContainer/>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<GetPackages />} />
@@ -38,6 +44,9 @@ const App = () => {
       <Route path="/logout" element={<Logout />} />
       <Route path="/admin/userupdate/:id" element={<AdminUser />} />
       <Route path="/admin/packageupdate/:id" element={<AdminPackage />} />
+      <Route path="/packages/view" element={<ViewBuyers />} />
+      <Route path="/packages/bought" element={<ViewSold />} />
+      <Route path="/about/reset" element={<ResetPassword />} />
     </Routes>
     </>
   )

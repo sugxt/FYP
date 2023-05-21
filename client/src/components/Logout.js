@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Logout = () => {
   // Promises
@@ -14,14 +15,16 @@ const Logout = () => {
       credentials: 'include'
 
     }).then((res) => {
-      history('/login', { replace: true })
       if (!res.status === 200) {
         const error = new Error(res.error)
         throw error;
       } else {
-        console.log("Logged Out")
         localStorage.removeItem("token")
+        history('/login', { replace: true })
       }
+      toast.success("Successfully Logged Out", {
+        toastId: 'success1',
+    })
     }).catch((err) => {
       console.log(err)
     })

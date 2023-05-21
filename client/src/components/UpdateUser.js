@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Navbar from './Navbar';
+import { toast } from 'react-toastify';
 
 const UpdateUser = () => {
 
   const [user, setUserData] = useState({ name: '', email: '', phone: '' });
   const [update, setUpdate] = useState({ name: '', email: '', phone: '' });
+  const history = useNavigate()
 
   const getUserData = async () => {
 
@@ -32,7 +34,8 @@ const UpdateUser = () => {
     try {
       const success = await axios.patch('/updateuser', update)
       if (success.status === 200) {
-        window.alert("User Updated")
+        toast.success("User Updated")
+        history('/about')
       }
     } catch (error) {
       window.alert("Could Not Update User")
@@ -64,15 +67,15 @@ const UpdateUser = () => {
                   <form>
                     <div className="form-group">
                       <label for="name">Name:</label>
-                      <input className='form-control' onChange={handleInput} type="text" name='name' placeholder={user.name} />
+                      <input className='form-control' onChange={handleInput} type="text" name='name' defaultValue={user.name} />
                     </div>
                     <div className="form-group">
                       <label for="email">Email:</label>
-                      <input className='form-control' onChange={handleInput} type="email" name='email' placeholder={user.email} />
+                      <input className='form-control' onChange={handleInput} type="email" name='email' defaultValue={user.email} />
                     </div>
                     <div className="form-group">
                       <label for="phone">Phone:</label>
-                      <input className='form-control' onChange={handleInput} type="number" name='phone' placeholder={user.phone} />
+                      <input className='form-control' onChange={handleInput} type="number" name='phone' defaultValue={user.phone} />
                     </div>
                     <button className='btn btn-primary btn-block bg-dark border-dark' onClick={postUpdate}>Update</button>
                   </form>

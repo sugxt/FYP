@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../Navbar';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AdminPackage = () => {
 
   const {id} = useParams();
@@ -29,10 +31,10 @@ const AdminPackage = () => {
     try {
       const success = await axios.patch('/admin/updatepackage', { package_name, price, description, id});
       if (success.status === 201) {
-        window.alert("Package Updated")
+        toast.success("Package Updated")
       }
     } catch (error) {
-      window.alert("Package Could Not Be Updated")
+      toast.error("Package Could Not Be Updated")
     }
   }
 

@@ -15,13 +15,10 @@ const Navbar = () => {
                   <NavLink className="nav-link" to="/home">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/about">About</NavLink>
+                  <NavLink className="nav-link" to="/packages/bought">Inventory</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/status">Status</NavLink>
-                </li>
-                <li className="nav-item">
-                   <NavLink className="nav-link" to="/packages">Packages</NavLink>
+                   <NavLink className="nav-link" to="/about">Profile</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/logout">Logout</NavLink>
