@@ -66,6 +66,7 @@ const GetPackages = () => {
                   <div className="container">
                     <h1 className='font-weight-bold'>Welcome {user}</h1>
                     <p className="lead">This is the marketplace for all the amazing packages you can find.</p>
+                    <p className="lead">Here you can buy and sell packages with ease</p>
                     <p>
                       <NavLink to="/packages/add">
                         <a className="btn border-white font-weight-bold text-teal bg-white border-rounded">Create a Package</a>
@@ -99,7 +100,9 @@ const GetPackages = () => {
                             />
                             <div className="card-body">
                               <h5 className="card-title">{product.package_name}</h5>
-                              <p className="card-text">{product.description}.</p>
+                              <p className="card-text" style={{ maxHeight: '25px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                {product.description}
+                              </p>
                               <p className="card-text">
                                 <small className="font-weight-bold">Price: Rs.{product.price}</small>
                               </p>

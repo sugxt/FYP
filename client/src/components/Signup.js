@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../images/eKalahBlack.png"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 const Signup = () => {
 
@@ -57,7 +58,9 @@ const Signup = () => {
       <body className="login-home-body">
         <div className="container">
           <article className="card-body mx-auto" style={{ maxWidth: 400 + 'px' }}>
+            <NavLink to='/'>
             <img className="mb-4" src={Logo} alt="" style={{ maxWidth: "100%", height: "auto" }} />
+            </NavLink>
             <h4 className="card-title mt-3 text-center">Create Account</h4>
             <p className="text-center">Get started with your free account</p>
             <p className="divider-text">

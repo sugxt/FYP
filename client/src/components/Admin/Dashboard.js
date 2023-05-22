@@ -19,7 +19,6 @@ const Dashboard = () => {
         try {
             const data = await axios.get("/getusers")
             setElements(data);
-            console.log(data);
             setCountUser(data.data.users.length)
         } catch (error) {
             console.log(error)
@@ -58,7 +57,6 @@ const Dashboard = () => {
 
         try {
             const data = await axios.get('/getpackages');
-            console.log(data);
             setProducts(data);
             setCountPackage(data.data.packages.length)
             setIsLoading(false)
@@ -71,7 +69,6 @@ const Dashboard = () => {
     useEffect(() => {
         getUsers()
         callPackages()
-        console.log(elements)
     }, [elements,products])
     return (
 

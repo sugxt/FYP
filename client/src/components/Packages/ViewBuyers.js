@@ -25,6 +25,7 @@ const ViewBuyers = () => {
                 <div className="container">
                     <h1 className='font-weight-bold'>Welcome</h1>
                     <p className="lead">These are the list of users that have bought your package</p>
+                    <p className="lead">Please contact all the buyers through the email that has been provided to you</p>
                 </div>
             </section>
             {isLoading ? <LoadingScreen /> : (
@@ -44,27 +45,7 @@ const ViewBuyers = () => {
                 </div>
             </div>
             )}
-
-            {/* <div>
-                <Navbar />
-                <section className="jumbotron jumbotron-fluid text-center bg-teal text-white pd-10">
-                  <div className="container">
-                    <h1 className='font-weight-bold'>Welcome</h1>
-                    <p className="lead">These are the list of users that have bought your package</p>
-                  </div>
-                </section>
-                {buyers.map((buyer, index) => (
-                    <div key={index} className="card mb-3">
-                        <div className="card-body">
-                            <h5 className="card-title">Buyer #{index + 1}</h5>
-                            <p className="card-text">Name: {buyer.name}</p>
-                            <p className="card-text">Email: {buyer.email}</p>
-                            <p className="card-text">Message: {buyer.message}</p>
-                            <p className="card-text">Paid: {buyer.paid ? 'Yes' : 'No'}</p>
-                        </div>
-                    </div>
-                ))}
-            </div> */}
+            
         </>
 
     )

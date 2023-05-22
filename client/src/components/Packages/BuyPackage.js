@@ -127,7 +127,7 @@ const BuyPackage = () => {
                     <form>
                       <div className="form-group">
                         <label htmlFor="message">Message:</label>
-                        <textarea onChange={handleInput} name="message" className='status-texta' rows="5" placeholder='' defaultValue={pkg ? `${pkg.package_name}:` : ' '}></textarea>
+                        <textarea onChange={handleInput} name="message" className='status-texta' rows="5" placeholder='' defaultValue={`${pkg.package_name}:`}></textarea>
                       </div>
                       <button className='btn btn-sm bg-dark text-white' onClick={(e) => {
                         e.preventDefault();

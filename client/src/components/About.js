@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import "./css/about.css"
-import { Container, Row, Col, Image, Button } from "react-bootstrap"
 import axios from 'axios';
 import Navbar from './Navbar';
 import LoadingScreen from './Others/LoadingScreen';
@@ -117,16 +116,19 @@ const About = () => {
                   </div>
                   <div className="container">
                     <div className="row justify-content-center">
-                      <div className="col-md-6">
+                      <div className="col-md-8">
                         <div className="card mb-4">
                           <div className="card-body">
                             <div className="text-center">
                               <img src={user.photo} alt="Avatar" className="img-fluid rounded-circle mb-3" style={{ width: '150px', height: '150px' }} />
                               <h4 className="card-title">{user.name}</h4>
-                              <p className="card-text">{user.role}</p>
+                              <p className="card-text"><i className="fa fa-user"></i>{user.role}</p>
                               <div className="btn-toolbar justify-content-center">
                                 <NavLink to="/about/update">
-                                  <button className="btn btn-sm bg-teal text-white mr-3">Edit Info</button>
+                                  <button className="btn btn-sm bg-teal text-white mr-3">Edit Information</button>
+                                </NavLink>
+                                <NavLink to="/about/reset">
+                                  <button className="btn btn-sm bg-teal text-white mr-3">Reset Password</button>
                                 </NavLink>
                                 {user.role === "admin" ? (
                                   <NavLink to='/admin/dashboard'>

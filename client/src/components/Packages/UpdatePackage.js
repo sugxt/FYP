@@ -65,6 +65,7 @@ const UpdatePackage = () => {
     try {
       const delpkg = await axios.delete("/packages/delete",{data: {id, user_email}})
       console.log(delpkg)
+      toast.error('Package Deleted')
       history("/packages")
     } catch (error) {
       console.log(error)
@@ -110,15 +111,15 @@ const UpdatePackage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 rounded bg-light p-3">
+            <div className="col-sm-6 rounded bg-light p-2">
             <div className="user-info-guide">
               <h5>User Information Guide</h5>
               <ul>
-              <li><i className="fas fa-info-circle"><p className='font-weight-bold'>Please Make Sure to Edit All of The Fields Before Submitting</p></i></li>
-                <li><i className="fas fa-info-circle"></i> Provide your full name.</li>
-                <li><i className="fas fa-info-circle"></i> Enter your email address.</li>
-                <li><i className="fas fa-info-circle"></i> Provide a valid phone number.</li>
-                <li><p className="font-weight-bold"></p> Please note that you won't have access to your previous packages if you change your e-mail </li>
+              <li><i className="fas fa-info-circle"></i>Please Make Sure to Edit All of The Fields Before Submitting.</li>
+                <li><i className="fas fa-info-circle"></i> Provide a name for your package.</li>
+                <li><i className="fas fa-info-circle"></i> Provide proper details of your package and if it is customizeable or not.</li>
+                <li><i className="fas fa-info-circle"></i> Enter a price for your package.</li>
+                <li><i className="fas fa-info-circle"></i> Upload an image that best describes your service.</li>
               </ul>
             </div>
             </div>

@@ -30,6 +30,7 @@ const ViewSold = () => {
                         <div className="container">
                             <h1 className='font-weight-bold'>Inventory</h1>
                             <p className="lead">This is the list of packages you have bought</p>
+                            <p className="lead">The freelancers have been notified and will reach out to you.</p>
                         </div>
                     </section>
                     <div className="container">

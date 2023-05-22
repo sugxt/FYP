@@ -64,6 +64,12 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <footer className="bg-teal text-white text-center p-3">
+        <div className="container">
+          <p className="mb-0">eKalah &copy;</p>
+          <p className="mb-0">Final Year Project for Herald College Kathmandu.</p>
+        </div>
+      </footer>
     </>
   )
 }

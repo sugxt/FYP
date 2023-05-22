@@ -32,7 +32,7 @@ const ResetPassword = () => {
         <Navbar/>
      <section className="jumbotron text-center bg-teal text-white">
         <div className="container">
-          <h1 className='font-weight-bold'>Change Your Info</h1>
+          <h1 className='font-weight-bold'>Change Your Information</h1>
         </div>
       </section>
       <section className='main-about'>
@@ -60,7 +60,7 @@ const ResetPassword = () => {
             <div className="user-info-guide">
               <h5>Reset Password Guide</h5>
               <ul>
-              <li><i className="fas fa-info-circle"><p className='font-weight-bold'>Please Make Sure to Fill All the Fields</p></i></li>
+              <li><p className='font-weight-bold'><i className="fas fa-info-circle"/>Please Make Sure to Fill All the Fields</p></li>
                 <li><i className="fas fa-info-circle"></i> Enter your previous password</li>
                 <li><i className="fas fa-info-circle"></i> Enter a new password</li>
                 <li><p className="font-weight-bold"></p> Please make sure the password is more than 8 characters with uppercase and lowercase characters.</li>

@@ -42,36 +42,6 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-// ****USING PROMISES****
-// router.post('/register',  (req,res) =>{
-
-//     const {name, email, password, photo, phone, role, cpassword} = req.body;
-
-//     if(!name || !email || !password || !cpassword) {
-//         return res.status(422).json({error: "Please enter all the required fields"})
-
-//     }
-//     if (password.length < 8){
-//         return res.status(422).json({error: "Password must be at least 8 characters"})
-
-//     }
-
-//     User.findOne({email:email})
-//     .then((userExists) => {
-//         if(userExists){
-//             return res.status(422).json({error: "User Already Exists"})
-//         }
-
-//         const user = new User({name, email, password, photo, phone, role,cpassword})
-
-//         user.save().then(() =>{
-//             res.status(201).json({message:"User Registered Successfully"})
-//         }).catch((err) => res.status(500).json({error:"Failed to register"}))
-//     }).catch(err =>{console.log(err); });
-// })
-
-// *** A-Sync and Await ***
-
 // Sign Up Route
 
 router.post('/register', async (req, res) => {
@@ -343,14 +313,21 @@ router.delete('/admin/deletepackage', adminauth, async (req, res) => {
 
 router.patch("/admin/updateuser", adminauth, async (req, res) => {
     try {
-        const { id } = req.body;
-
-        const upuser = await User.findByIdAndUpdate({ _id: id }, req.body, { new: true })
-        return res.status(201).json({ message: "User Updated" })
+      const { id, role, ...updates } = req.body;
+  
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        { $set: updates, role },
+        { new: true }
+      );
+  
+      return res.status(201).json({ message: "User Updated", user: updatedUser });
     } catch (error) {
-        return res.json(error)
+      return res.json(error);
     }
-})
+  });
+  
+  
 
 router.patch('/admin/updatepackage', adminauth, async (req, res) => {
     try {
