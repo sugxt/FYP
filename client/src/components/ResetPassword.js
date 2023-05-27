@@ -16,9 +16,11 @@ const ResetPassword = () => {
                 localStorage.removeItem("token")
                 history('/login')
             } else{
+                toast.error("Password Reset Failed")
                 console.log("Password Reset Failed")
             }
         } catch (error) {
+            toast.error("Password Reset Failed")
             console.log(error)
         }
     }

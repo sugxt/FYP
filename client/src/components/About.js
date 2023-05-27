@@ -120,7 +120,7 @@ const About = () => {
                         <div className="card mb-4">
                           <div className="card-body">
                             <div className="text-center">
-                              <img src={user.photo} alt="Avatar" className="img-fluid rounded-circle mb-3" style={{ width: '150px', height: '150px' }} />
+                              <img src={user.photo} alt="Avatar" className="img-fluid rounded-circle mb-3" style={{ width: '180px', height: '150px' }} />
                               <h4 className="card-title">{user.name}</h4>
                               <p className="card-text"><i className="fa fa-user"></i>{user.role}</p>
                               <div className="btn-toolbar justify-content-center">

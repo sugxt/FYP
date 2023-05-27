@@ -81,7 +81,7 @@ const AdminPackage = () => {
               <div className="user-info-guide">
                 <h5>User Information Guide</h5>
                 <ul>
-                  <li><i className="fas fa-info-circle"><p className='font-weight-bold'>Please Make Sure to Edit All of The Fields Before Submitting</p></i></li>
+                  <li><p className='font-weight-bold'><i className="fas fa-info-circle"/>Please Make Sure to Edit All of The Fields Before Submitting</p></li>
                   <li><i className="fas fa-info-circle"></i> Provide your full name.</li>
                   <li><i className="fas fa-info-circle"></i> Enter your email address.</li>
                   <li><i className="fas fa-info-circle"></i> Provide a valid phone number.</li>

@@ -77,14 +77,15 @@ const Packages = () => {
       <Navbar />
       <section className="jumbotron jumbotron-fluid text-center bg-teal text-white">
         <div className="container">
-          <h1 className="font-weight-bold">Create Product</h1>
+          <h1 className="font-weight-bold">Create a Package</h1>
+          <p className='text-lead'>Follow the instructions and have fun with the description</p>
         </div>
       </section>
       <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div className="createpackage-form p-5 border rounded">
-              <h1 className="my-5">Create a New Package</h1>
+              <h1 className="my-5">Create an Old Package</h1>
               <form>
                 <div className="form-group">
                   <label for="productName">Package Name</label>

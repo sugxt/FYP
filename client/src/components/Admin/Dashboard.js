@@ -29,12 +29,12 @@ const Dashboard = () => {
         try {
             const del = await axios.delete('/admin/deleteuser', { data: { id } })
             console.log(del)
-            if(del.status === 201){
+            if (del.status === 201) {
                 toast.success("User Deleted")
-            }else{
+            } else {
                 toast.error("Couldn't delete User")
             }
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -43,9 +43,9 @@ const Dashboard = () => {
         try {
             const packdel = await axios.delete("/admin/deletepackage", { data: { id } })
             console.log(packdel)
-            if(packdel.status === 201){
+            if (packdel.status === 201) {
                 toast.success("Package Deleted")
-            }else{
+            } else {
                 toast.error("Couldn't Delete The Package")
             }
         } catch (error) {
@@ -69,7 +69,7 @@ const Dashboard = () => {
     useEffect(() => {
         getUsers()
         callPackages()
-    }, [elements,products])
+    }, [elements, products])
     return (
 
         <>
@@ -96,11 +96,6 @@ const Dashboard = () => {
                                                     </NavLink>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <NavLink to="/home" className="nav-link text-white">
-                                                        <span data-feather="file"></span>
-                                                        Users
-                                                    </NavLink>
-                                                </li> <li className="nav-item">
                                                     <NavLink to="/home" className="nav-link text-white">
                                                         <span data-feather="file"></span>
                                                         Packages
@@ -160,7 +155,7 @@ const Dashboard = () => {
                                                                     <div className="card-body">
                                                                         <h5 className="card-title">{product.package_name}</h5>
                                                                         <p className="card-text">{product.description}.</p>
-                                                                        <p className="card-text"><small className="font-weight-bold">Price: {product.price}$</small></p>
+                                                                        <p className="card-text"><small className="font-weight-bold">Price: Rs.{product.price}</small></p>
                                                                         <p className="card-text"><small className="text-muted">{product.user_name}</small></p>
                                                                         <div className="d-flex justify-content-between align-items-center">
                                                                             <div className="btn-toolbar">
